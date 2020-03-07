@@ -1,0 +1,29 @@
+.my_posts__item-wrap {
+    width: 80%;
+    min-width: 500px;
+}
+
+.my_posts__item {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    margin-top: 15px;
+    border-radius: 5px;
+    border: 1px solid #E7E8EC;
+}
+
+.my_posts__item img {
+    width: 40px;
+    border-radius: 50%;
+    box-shadow: -2px 2px 5px rgb(30, 140, 230);
+}
+
+.post_message {
+    margin-left: 15px;
+}
+
+.post_likes {
+    padding: 0 15px;
+    display: flex;
+    justify-content: flex-end;
+  }

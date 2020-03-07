@@ -1,0 +1,29 @@
+.dialogs {
+    display: flex;
+    background-color: #fff;
+    padding: 15px;
+    flex: auto;
+    margin-left: 5px;
+    border-radius: 5px;
+}
+
+.dialogs .person .active {
+    color: #5181B8;
+}
+
+.person {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 11em;
+    padding-bottom: 10px;
+    border-right: 1px solid #E7E8EC;
+}
+
+.person__name {
+    padding: 8px;
+}
+
+.dialogs__message {
+    margin-left: 50px;
+    padding-top: 20px;
+}

@@ -1,0 +1,25 @@
+.profile {
+    background-color: #fff;
+    padding: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 5px;
+    border-radius: 5px;
+}
+  
+.profile-info {
+    display: flex;
+    width: 100%;
+}
+
+.profile__avatar img {
+    width: 100px;
+    border-radius: 50%;
+    box-shadow: -2px 2px 5px rgb(30, 140, 230);
+}
+
+.description {
+    padding: 15px;
+    border-bottom: 1px solid #E7E8EC;
+    flex: auto;
+}

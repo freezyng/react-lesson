@@ -1,0 +1,47 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+html, body {
+    font-size: 14px;
+    background-color: #EDEEF0;
+}
+
+.link-item {
+    text-transform: capitalize;
+    cursor: pointer;
+}
+
+.container {
+    display: block;
+    margin: 0 auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    max-width: 1230px;
+}
+
+.wrap-navbar-content {
+    display: flex;
+}
+
+.btn {
+    color: #fff;
+    cursor: pointer;
+    border: none;
+    text-align: center;
+    border-radius: 4px;
+    padding: 6px 15px;
+    background-color: #5181B8;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+}

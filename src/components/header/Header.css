@@ -1,0 +1,25 @@
+
+.header {
+    background-color: #4A76A8;
+    height: 50px;
+    line-height: 25px;
+    align-items: center;
+    margin-bottom: 10px;
+}
+  
+.header__menu {
+    height: 50px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+  
+.header__link {
+    line-height: 20px;
+    padding: 15px;
+    color: #fff;
+}
+
+.header__link:hover {
+    background-color: #3d6898;
+}
