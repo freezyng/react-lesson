@@ -14,7 +14,8 @@ const Profile = (props) => {
                     Описание
                 </div>
             </div>
-            <MyPosts myPostsMessage={props.myPostsMessage} />
+            <MyPosts myPostsMessage={props.myPostsMessage} 
+                                    addPost={props.addPost} />
         </div>
     );
 }
