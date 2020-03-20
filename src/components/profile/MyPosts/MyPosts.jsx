@@ -3,25 +3,23 @@ import Post from './Post/Post.jsx';
 import './MyPosts.css';
 
 const MyPosts = (props) => {
-
     let myPostsMessageComponents = props.myPostsMessage.map((myPost) => {
         return <Post message={myPost.message} likes={myPost.likes} />
     });
     
     let newMyPostText = React.createRef();
 
-    let getPost = () => {
+    let getTextareaValue = () => {
         let text = newMyPostText.current.value;
-        props.addPost(text);
-        newMyPostText.current.value = '';
+        props.updateNewMyPostText(text);
     }
 
     return (
         <div className="my_posts">
             <h3>Новый пост</h3>
             <div className="my_posts__new_post">
-                <textarea ref={newMyPostText}></textarea>
-                <button onClick={ getPost } className="my_posts__btn btn">Пост</button>
+                <textarea onChange={ getTextareaValue } ref={ newMyPostText } value={props.textareaNewText}></textarea>
+                <button onClick={ props.addMyPost } className="my_posts__btn btn">Пост</button>
             </div>
             <h3>Мои посты</h3>
       

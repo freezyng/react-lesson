@@ -15,7 +15,9 @@ const Profile = (props) => {
                 </div>
             </div>
             <MyPosts myPostsMessage={props.myPostsMessage} 
-                                    addPost={props.addPost} />
+                                    addMyPost={props.addMyPost}
+                                    textareaNewText={props.textareaNewText}
+                                    updateNewMyPostText={props.updateNewMyPostText} />
         </div>
     );
 }
