@@ -5,7 +5,7 @@ const Post = (props) => {
     return (
         <div className="my_posts__item-wrap">
             <div className="my_posts__item">
-                <img src="https://slide-share.ru/image/1696999.jpeg" alt="avatar" />
+                <img src="https://crazymemas.ru/wp-content/uploads/2019/05/29.png" alt="avatar" />
                 <div className="post_message">
                     {props.message}
                 </div>

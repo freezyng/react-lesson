@@ -1,4 +1,6 @@
-let rerenderAllComponent;
+const UPDATE_NEW_MY_POST_TEXT = 'UPDATE-NEW-MY-POST-TEXT';
+const ADD_MY_POST = 'ADD-MY-POST';
+
 let store = {
     _state: {
         profilePage: {
@@ -11,7 +13,7 @@ let store = {
                                 kkkkkkkkkkjdffffffffkkkkkkkkkkkkkkkkkksdddddddddddd
                                 ddddddddddddddddddddfhsjdfhasjcs sh fsaf  asfsaf as` }
             ],
-            textareaNewText: 'hello1',
+            textareaNewText: 'Написать комментарий',
         },
         dialogsPage: {
             dialogsData: [
@@ -42,39 +44,48 @@ let store = {
         }
     
     },
+    _callSubscriber() {
+        console.log('State changed');
+    },
 
     getState() {
         return this._state;
     },
-
-    updateNewMyPostText(newText) {
-        this._state.profilePage.textareaNewText = newText;
-        rerenderAllComponent(this.getState());
-    },
-
-    addMyPost() {
-        let str = this._state.profilePage.textareaNewText.replace(/\s/g, '');
-
-        if(str) {
-            let post = {
-                id: 4,
-                likes: 0,
-                message: this._state.profilePage.textareaNewText
-            };
-    
-            this._state.profilePage.myPostsMessage.push(post);
-            this._state.profilePage.textareaNewText = '';
-        }
-        rerenderAllComponent(this.getState());
-    },
-
     subscribe(observer) {
-        rerenderAllComponent = observer;
+        this._callSubscriber = observer;
+    },
+
+    dispatch(action) { //{type: 'ADD-MY-POST'}
+        if(action.type === ADD_MY_POST) {
+            let str = this._state.profilePage.textareaNewText.replace(/\s/g, '');
+
+            if(str) {
+                let post = {
+                    id: 4,
+                    likes: 0,
+                    message: this._state.profilePage.textareaNewText
+                };
+        
+                this._state.profilePage.myPostsMessage.push(post);
+                this._state.profilePage.textareaNewText = '';
+            }
+            this._callSubscriber(this.getState());
+
+        } else if(action.type === UPDATE_NEW_MY_POST_TEXT) {
+            this._state.profilePage.textareaNewText = action.newText;
+            this._callSubscriber(this.getState());
+        }
     },
 }
 
+const addPostActionCreater = () => {
+    return {type: ADD_MY_POST}
+}
+const upDateNewMyPostTextActionCreater = (text) => {
+    return {type: UPDATE_NEW_MY_POST_TEXT, newText: text}
+}
 
 
 window.store = store;
 
-export {store};
+export {store, addPostActionCreater, upDateNewMyPostTextActionCreater};

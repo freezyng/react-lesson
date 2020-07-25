@@ -7,7 +7,7 @@ const Profile = (props) => {
         <div className="profile">
             <div className="profile-info">
                 <div className="profile__avatar">
-                    <img src="https://slide-share.ru/image/1696999.jpeg" alt="avatar" />
+                    <img src="https://crazymemas.ru/wp-content/uploads/2019/05/29.png" alt="avatar" />
                     Аватарка
                 </div>
                 <div className="description">
@@ -15,9 +15,8 @@ const Profile = (props) => {
                 </div>
             </div>
             <MyPosts myPostsMessage={props.myPostsMessage} 
-                                    addMyPost={props.addMyPost}
-                                    textareaNewText={props.textareaNewText}
-                                    updateNewMyPostText={props.updateNewMyPostText} />
+                                    dispatch={props.dispatch}
+                                    textareaNewText={props.textareaNewText}/>
         </div>
     );
 }

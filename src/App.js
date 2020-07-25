@@ -15,13 +15,17 @@ const App = (props) => {
                 <div className="wrap-navbar-content container">
                     <Navbar />
 
-                    <Route path='/dialogs' render={() => {return (<Dialogs dialogsData={props.state.dialogsPage.dialogsData} 
-                                                                        dialogsMessage={props.state.dialogsPage.dialogsMessage} />)}
+                    <Route path='/dialogs' render={() => {
+                        return (<Dialogs dialogsData={props.state.dialogsPage.dialogsData} 
+                            dialogsMessage={props.state.dialogsPage.dialogsMessage} />)
+                        }
                     }/>
-                    <Route path='/profile' render={() => {return (<Profile myPostsMessage={props.state.profilePage.myPostsMessage}
-                                                                addMyPost={props.addMyPost}
-                                                                textareaNewText={props.state.profilePage.textareaNewText}
-                                                                updateNewMyPostText={props.updateNewMyPostText} />)}
+                    <Route path='/profile' render={() => {
+                        return (<Profile myPostsMessage={props.state.profilePage.myPostsMessage}
+                            dispatch={props.dispatch}
+                            textareaNewText={props.state.profilePage.textareaNewText}
+                            />)
+                        }
                     }/>
                 </div>
             </div>
