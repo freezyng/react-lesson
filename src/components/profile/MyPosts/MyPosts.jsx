@@ -1,7 +1,7 @@
 import React from 'react';
 import Post from './Post/Post.jsx';
 import './MyPosts.css';
-import {addPostActionCreater, upDateNewMyPostTextActionCreater} from '../../../state.js';
+import {addPostCreator, upDateNewMyPostTextCreator} from '../../../state.js';
 
 
 
@@ -13,19 +13,19 @@ const MyPosts = (props) => {
     let newPostElement = React.createRef();
 
     let addPost = () => {
-        props.dispatch(addPostActionCreater());
+        props.dispatch(addPostCreator());
     }
 
     let onPostChange = () => {
         let text = newPostElement.current.value;
-        props.dispatch(upDateNewMyPostTextActionCreater(text));
+        props.dispatch(upDateNewMyPostTextCreator(text));
     }
 
     return (
         <div className="my_posts">
             <h3>Новый пост</h3>
             <div className="my_posts__new_post">
-                <textarea onChange={ onPostChange } ref={ newPostElement } value={props.textareaNewText}></textarea>
+                <textarea onChange={ onPostChange } ref={ newPostElement } value={props.newPostText} placeholder='Написать...'></textarea>
                 <button onClick={ addPost } className="my_posts__btn btn">Пост</button>
             </div>
             <h3>Мои посты</h3>

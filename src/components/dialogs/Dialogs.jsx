@@ -1,23 +1,36 @@
 import React from 'react';
 import './Dialogs.css';
 import { DialogsItem, DialogsMessage } from './Item-message/DialogsItem-message.jsx';
+import { upDateNewMessageTextCreator, sendNewMessageCreator } from '../../state.js';
 
 
 const Dialogs = (props) => {
-    let dialogsNameComponents = props.dialogsData.map((dialogName) => {
+    let dialogsNamesComponents = props.dialogsData.map((dialogName) => {
         return <DialogsItem id={dialogName.id} name={dialogName.name} />
     });
-    let dialogsMessageComponents = props.dialogsMessage.map((dialogMessage) => {
+    let dialogsMessagesComponents = props.dialogsMessage.map((dialogMessage) => {
         return <DialogsMessage message={dialogMessage.message} />
     });
+    let newMessageText = props.newMessageText;
+
+    let onSendMessageClick = () => {
+        props.dispatch(sendNewMessageCreator())
+    }
+    let onNewMessageChange = (e) => {
+        let text = e.target.value;
+        props.dispatch(upDateNewMessageTextCreator(text))
+
+    }
 
     return (
         <div className="dialogs">
             <div className="person column">
-                {dialogsNameComponents}
+                {dialogsNamesComponents}
             </div>
             <div className="column">
-                {dialogsMessageComponents}
+                <div>{dialogsMessagesComponents}</div>
+                <div> <textarea onChange={ onNewMessageChange } value={newMessageText} placeholder='Написать...'></textarea> </div>
+                <div><button onClick={ onSendMessageClick }>Отправить</button></div>
             </div>
         </div>
     );

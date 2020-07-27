@@ -7,7 +7,7 @@ import * as serviceWorker from './serviceWorker';
 
 export let rerenderAllComponent = (state) => {
     ReactDOM.render(
-        <App state={state} dispatch={store.dispatch.bind(store)} />, document.getElementById('root')
+        <App state={state} store={store} dispatch={store.dispatch.bind(store)} />, document.getElementById('root')
     );
 }
 
