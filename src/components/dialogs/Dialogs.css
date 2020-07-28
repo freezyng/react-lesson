@@ -7,6 +7,21 @@
     border-radius: 5px;
 }
 
+.column {
+    position: relative;
+    padding-left: 50px;
+    padding-bottom: 75px;
+}
+
+.column > div {
+    margin-top: 10px;
+}
+
+.new__message__text {
+    position: absolute;
+    bottom: 0;
+}
+
 .dialogs .person .active {
     color: #5181B8;
 }
@@ -24,6 +39,5 @@
 }
 
 .dialogs__message {
-    margin-left: 50px;
     padding-top: 20px;
 }

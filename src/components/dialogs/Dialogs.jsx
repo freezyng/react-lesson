@@ -1,7 +1,7 @@
 import React from 'react';
 import './Dialogs.css';
 import { DialogsItem, DialogsMessage } from './Item-message/DialogsItem-message.jsx';
-import { upDateNewMessageTextCreator, sendNewMessageCreator } from '../../state.js';
+import { upDateNewMessageTextCreator, sendNewMessageCreator } from '../../redux/dialogs-reduser.js';
 
 
 const Dialogs = (props) => {
@@ -29,8 +29,10 @@ const Dialogs = (props) => {
             </div>
             <div className="column">
                 <div>{dialogsMessagesComponents}</div>
-                <div> <textarea onChange={ onNewMessageChange } value={newMessageText} placeholder='Написать...'></textarea> </div>
-                <div><button onClick={ onSendMessageClick }>Отправить</button></div>
+                <div className="new__message__text"> 
+                    <textarea onChange={ onNewMessageChange } value={newMessageText} placeholder='Написать...'></textarea> 
+                    <button onClick={ onSendMessageClick }>Отправить</button> 
+                </div>
             </div>
         </div>
     );

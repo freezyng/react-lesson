@@ -1,0 +1,65 @@
+import {dialogsReduser} from './dialogs-reduser.js';
+import {profileReduser} from './profile-reduser.js';
+
+
+
+let store = {
+    _state: {
+        profilePage: {
+            myPostsMessage: [
+                { id: 1, likes: 22, message: 'asdasdsa' },
+                { id: 2, likes: 2, message: 'asdsd asd ww e qwe' },
+                { id: 3, likes: 0, message: `hello!! jdffffffffkkkkkkkkkkkkkkkkkjdffff 
+                                ffkkkkkkkkjdffffffffkkkkkkkkkkkkkkkkkjdffffffffk 
+                                kkkkkkkkkkkkkkkkjdffffkkkkkkkkkdffffffffkkkkkkk
+                                kkkkkkkkkkjdffffffffkkkkkkkkkkkkkkkkkksdddddddddddd
+                                ddddddddddddddddddddfhsjdfhasjcs sh fsaf  asfsaf as` }
+            ],
+            newPostText: '',
+        },
+        dialogsPage: {
+            dialogsData: [
+                { id: 1, name: 'вася пятухов' },
+                { id: 2, name: 'пятухов' },
+                { id: 3, name: 'вася' },
+                { id: 4, name: 'втухов' },
+                { id: 5, name: 'васов' },
+                { id: 6, name: 'ас тух' },
+                { id: 7, name: 'ся тухов' },
+                { id: 8, name: 'лоо лотухов' }
+            ],
+            dialogsMessage: [
+                { id: 1, message: 'asdasdsa' },
+                { id: 2, message: 'asdsd asd ww e qwe' },
+                { id: 3, message: 'сятухо' },
+            ],
+            newMessageText: '',
+        }
+    
+    },
+    _callSubscriber() {
+        console.log('State changed');
+    },
+
+    getState() {
+        return this._state;
+    },
+    subscribe(observer) {
+        this._callSubscriber = observer;
+    },
+
+    dispatch(action) { //action {type: '...'} --NECESSARILY
+
+        this._state.profilePage = profileReduser(this._state.profilePage, action);
+        this._state.dialogsPage = dialogsReduser(this._state.dialogsPage, action);
+        this._callSubscriber(this._state);
+    }
+}
+
+
+
+
+
+window.store = store;
+
+export {store};
