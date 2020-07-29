@@ -1,5 +1,4 @@
 .my_posts__item-wrap {
-    width: 80%;
     min-width: 500px;
 }
 
@@ -20,6 +19,10 @@
 
 .post_message {
     margin-left: 15px;
+    word-break:break-all;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
 }
 
 .post_likes {

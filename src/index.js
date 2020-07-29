@@ -1,4 +1,4 @@
-import {store} from './redux/store.js';
+import {store} from './redux/redux-store.js';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
@@ -13,6 +13,8 @@ export let rerenderAllComponent = (state) => {
 
 rerenderAllComponent(store.getState());
 
-store.subscribe(rerenderAllComponent);
+store.subscribe(() => {
+    rerenderAllComponent(store.getState());
+});
 
 serviceWorker.unregister();

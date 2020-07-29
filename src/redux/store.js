@@ -1,5 +1,5 @@
-import {dialogsReduser} from './dialogs-reduser.js';
-import {profileReduser} from './profile-reduser.js';
+import {dialogsReduser} from './dialogs-reducer.js';
+import {profileReduser} from './profile-reducer.js';
 
 
 
@@ -9,11 +9,7 @@ let store = {
             myPostsMessage: [
                 { id: 1, likes: 22, message: 'asdasdsa' },
                 { id: 2, likes: 2, message: 'asdsd asd ww e qwe' },
-                { id: 3, likes: 0, message: `hello!! jdffffffffkkkkkkkkkkkkkkkkkjdffff 
-                                ffkkkkkkkkjdffffffffkkkkkkkkkkkkkkkkkjdffffffffk 
-                                kkkkkkkkkkkkkkkkjdffffkkkkkkkkkdffffffffkkkkkkk
-                                kkkkkkkkkkjdffffffffkkkkkkkkkkkkkkkkkksdddddddddddd
-                                ddddddddddddddddddddfhsjdfhasjcs sh fsaf  asfsaf as` }
+                { id: 3, likes: 0, message: `hello!! jdffffffffk` }
             ],
             newPostText: '',
         },

@@ -1,8 +1,16 @@
 const UPDATE_NEW_MY_POST_TEXT = 'UPDATE-NEW-MY-POST-TEXT';
 const ADD_MY_POST = 'ADD-MY-POST';
 
+let initialState = {
+    myPostsMessage: [
+        { id: 1, likes: 22, message: 'asdasdsa' },
+        { id: 2, likes: 2, message: 'asdsd asd ww e qwe' },
+        { id: 3, likes: 0, message: `hello!! jdffffffffk` }
+    ],
+    newPostText: '',
+};
 
-const profileReduser = (state, action) => {
+const profileReducer = (state = initialState, action) => {
 
     switch(action.type) {
         case ADD_MY_POST:
@@ -36,4 +44,4 @@ const upDateNewMyPostTextCreator = (text) => {
     return {type: UPDATE_NEW_MY_POST_TEXT, newText: text}
 }
 
-export {profileReduser, addPostCreator, upDateNewMyPostTextCreator};
+export {profileReducer, addPostCreator, upDateNewMyPostTextCreator};
