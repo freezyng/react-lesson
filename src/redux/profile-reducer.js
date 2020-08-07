@@ -2,6 +2,7 @@ const UPDATE_NEW_MY_POST_TEXT = 'UPDATE-NEW-MY-POST-TEXT';
 const ADD_MY_POST = 'ADD-MY-POST';
 
 let initialState = {
+    myAvatarURL: 'https://7themes.su/php/imres/resize.php?width=1920&height=1440&cropratio=4:3&image=/_ph/40/397399018.jpg',
     myPostsMessage: [
         { id: 1, likes: 22, message: 'asdasdsa' },
         { id: 2, likes: 2, message: 'asdsd asd ww e qwe' },

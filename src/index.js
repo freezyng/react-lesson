@@ -5,9 +5,9 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-export let rerenderAllComponent = (state) => {
+export let rerenderAllComponent = () => {
     ReactDOM.render(
-        <App state={state} store={store} dispatch={store.dispatch.bind(store)} />, document.getElementById('root')
+        <App store={store} />, document.getElementById('root')
     );
 }
 

@@ -3,7 +3,7 @@ import './App.css';
 import Header from './components/header/Header.jsx';
 import Navbar from './components/navbar/Navbar.jsx';
 import Profile from './components/profile/Profile.jsx';
-import Dialogs from './components/dialogs/Dialogs.jsx';
+import DialogsContainer from './components/dialogs/DialogsContainer.jsx';
 import { BrowserRouter, Route } from 'react-router-dom';
 
 const App = (props) => {
@@ -16,17 +16,11 @@ const App = (props) => {
                     <Navbar />
 
                     <Route path='/dialogs' render={() => {
-                        return (<Dialogs dialogsData={props.state.dialogsPage.dialogsData} 
-                            dialogsMessage={props.state.dialogsPage.dialogsMessage}
-                            newMessageText={props.state.dialogsPage.newMessageText}
-                            dispatch={props.dispatch} />)
+                        return (<DialogsContainer store={props.store}/>)
                         }
                     }/>
                     <Route path='/profile' render={() => {
-                        return (<Profile myPostsMessage={props.state.profilePage.myPostsMessage}
-                            dispatch={props.dispatch}
-                            newPostText={props.state.profilePage.newPostText}
-                            />)
+                        return (<Profile store={props.store}/>)
                         }
                     }/>
                 </div>

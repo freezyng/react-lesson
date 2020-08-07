@@ -11,8 +11,14 @@
     border: 1px solid #E7E8EC;
 }
 
-.my_posts__item img {
+.my_posts__avatar{
     width: 40px;
+    height: 40px;
+}
+
+.my_posts__avatar img {
+    width: 100%;
+    height: 100%;
     border-radius: 50%;
     box-shadow: -2px 2px 5px rgb(30, 140, 230);
 }
