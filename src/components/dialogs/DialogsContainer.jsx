@@ -17,7 +17,7 @@ const DialogsContainer = (props) => {
                 store.dispatch(upDateNewMessageTextCreator(text))
 
             }
-            
+
             return ( <Dialogs 
                 upDateNewMessageText={onNewMessageChange} 
                 sendMessage={onSendMessageClick} 

@@ -1,8 +1,7 @@
 import React from 'react';
 
 const ProfileInfo = (props) => {
-    let state = props.state;
-    let avatar = state.profilePage.myAvatarURL;
+    let avatar = props.avatar;
 
     return(  
         <div className="profile-info">

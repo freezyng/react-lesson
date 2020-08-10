@@ -4,13 +4,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import StoreContext from './StoreContext';
+import {Provider} from './StoreContext';
 
 export let rerenderAllComponent = () => {
     ReactDOM.render(
-        <StoreContext.Provider value={store}>
+        <Provider store={store}>
             <App />
-        </StoreContext.Provider>
+        </Provider>
         , document.getElementById('root')
     );
 }
