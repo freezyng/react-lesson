@@ -1,7 +1,7 @@
 import React from 'react';
 
 const ProfileInfo = (props) => {
-    let state = props.store.getState();
+    let state = props.state;
     let avatar = state.profilePage.myAvatarURL;
 
     return(  

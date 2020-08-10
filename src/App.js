@@ -16,11 +16,11 @@ const App = (props) => {
                     <Navbar />
 
                     <Route path='/dialogs' render={() => {
-                        return (<DialogsContainer store={props.store}/>)
+                        return (<DialogsContainer />)
                         }
                     }/>
                     <Route path='/profile' render={() => {
-                        return (<Profile store={props.store}/>)
+                        return (<Profile />)
                         }
                     }/>
                 </div>
