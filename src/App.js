@@ -4,11 +4,10 @@ import Header from './components/header/Header.jsx';
 import Navbar from './components/navbar/Navbar.jsx';
 import Profile from './components/profile/Profile.jsx';
 import DialogsContainer from './components/dialogs/DialogsContainer.jsx';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
 const App = (props) => {
     return (
-        <BrowserRouter>
             <div className="App">
                 <Header />
 
@@ -25,7 +24,6 @@ const App = (props) => {
                     }/>
                 </div>
             </div>
-        </BrowserRouter>
     );
 }
 

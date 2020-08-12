@@ -10,4 +10,4 @@ let redusers = combineReducers({
 
 let store = createStore(redusers);
 
-export {store};
+export default store;

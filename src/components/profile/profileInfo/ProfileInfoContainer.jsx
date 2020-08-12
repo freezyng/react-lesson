@@ -1,21 +1,13 @@
-import React from 'react';
-import StoreContext from '../../../StoreContext';
 import ProfileInfo from './ProfileInfo';
+import {connect} from 'react-redux';
 
 
-const ProfileInfoContainer = (props) => {
-
-    return <StoreContext.Consumer>
-        {   (store) => {
-                let avatar = store.getState().profilePage.myAvatarURL;
-
-                return ( <ProfileInfo
-                    avatar={avatar}
-                /> )
-            }
-        }
-        </StoreContext.Consumer>
+let mapAvatarToProps = (state) => {
+    return {
+        avatar: state.profilePage.myAvatarURL
+    };
 }
 
+let ProfileInfoContainer = connect(mapAvatarToProps)(ProfileInfo)
 
 export default ProfileInfoContainer;

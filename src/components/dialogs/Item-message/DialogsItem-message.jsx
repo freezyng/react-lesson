@@ -13,7 +13,7 @@ const DialogsItem = (props) => {
 const DialogsMessage = (props) => {
     return(
         <div className="dialogs__message">
-        {props.message}
+            {props.message}
         </div>
     );
 }
