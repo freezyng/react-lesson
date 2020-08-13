@@ -7,7 +7,7 @@ import './MyPosts.css';
 const MyPosts = (props) => {
 
     let myPostsMessageComponents = props.myPostsMessage.map((myPost) => {
-        return <Post message={myPost.message} likes={myPost.likes} myAvatarURL={props.myAvatarURL} />
+        return <Post message={myPost.message} key={myPost.id} likes={myPost.likes} myAvatarURL={props.myAvatarURL} />
     });
     
     let newPostElement = React.createRef();

@@ -12,28 +12,36 @@ let initialState = {
 };
 
 const profileReducer = (state = initialState, action) => {
+    let stateCopy = { ...state };
+    stateCopy.myPostsMessage = [ ...state.myPostsMessage ];
+
 
     switch(action.type) {
         case ADD_MY_POST:
-            let str = state.newPostText.replace(/\s/g, '');
+            let str = stateCopy.newPostText.replace(/\s/g, '');
 
             if(str) {
+                let postId;
+                for (let i = 0; i < stateCopy.myPostsMessage.length; i++ ) {
+                    postId = stateCopy.myPostsMessage[i].id + 1;
+                }
+
                 let post = {
-                    id: 4,
+                    id: postId,
                     likes: 0,
-                    message: state.newPostText
+                    message: stateCopy.newPostText
                 };
         
-                state.myPostsMessage.push(post);
-                state.newPostText = '';
+                stateCopy.myPostsMessage.push(post);
+                stateCopy.newPostText = '';
             }
-            return state;
+            return stateCopy;
         
         case UPDATE_NEW_MY_POST_TEXT:
-            state.newPostText = action.newText;
-            return state;
+            stateCopy.newPostText = action.newText;
+            return stateCopy;
         default: 
-            return state;
+            return stateCopy;
     }
 }
 

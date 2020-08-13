@@ -21,28 +21,37 @@ let initialState = {
 };
 
 const dialogsReducer = (state = initialState, action) => {
+    let stateCopy = { ...state };
+    stateCopy.dialogsMessage = [ ...state.dialogsMessage ]; 
+
 
     switch(action.type) {
         case SEND_NEW_MESSAGE:
-            let str = state.newMessageText.replace(/\s/g, '');
+            let str = stateCopy.newMessageText.replace(/\s/g, '');
+            
 
             if(str) {
+                let postId;
+                for (let i = 0; i < stateCopy.dialogsMessage.length; i++ ) {
+                    postId = stateCopy.dialogsMessage[i].id + 1;
+                }
+
                 let post = {
-                    id: 4,
-                    message: state.newMessageText
+                    id: postId,
+                    message: stateCopy.newMessageText
                 };
         
-                state.dialogsMessage.push(post);
-                state.newMessageText = '';
+                stateCopy.dialogsMessage.push(post);
+                stateCopy.newMessageText = '';
             }
-            return state;
+            return stateCopy;
 
         case UPDATE_NEW_MESSAGE_TEXT:
-            state.newMessageText = action.newText;
-            return state;
+            stateCopy.newMessageText = action.newText;
+            return stateCopy;
 
         default:
-            return state;
+            return stateCopy;
 
     }
     
