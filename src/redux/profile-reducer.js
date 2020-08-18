@@ -3,7 +3,7 @@ const ADD_MY_POST = 'ADD-MY-POST';
 
 let initialState = {
     myAvatarURL: 'https://7themes.su/php/imres/resize.php?width=1920&height=1440&cropratio=4:3&image=/_ph/40/397399018.jpg',
-    myPostsMessage: [
+    myPostsMessages: [
         { id: 1, likes: 22, message: 'asdasdsa' },
         { id: 2, likes: 2, message: 'asdsd asd ww e qwe' },
         { id: 3, likes: 0, message: `hello!! jdffffffffk` }
@@ -12,36 +12,24 @@ let initialState = {
 };
 
 const profileReducer = (state = initialState, action) => {
-    let stateCopy = { ...state };
-    stateCopy.myPostsMessage = [ ...state.myPostsMessage ];
-
 
     switch(action.type) {
         case ADD_MY_POST:
-            let str = stateCopy.newPostText.replace(/\s/g, '');
+            let str = state.newPostText;
 
-            if(str) {
-                let postId;
-                for (let i = 0; i < stateCopy.myPostsMessage.length; i++ ) {
-                    postId = stateCopy.myPostsMessage[i].id + 1;
-                }
-
-                let post = {
-                    id: postId,
-                    likes: 0,
-                    message: stateCopy.newPostText
-                };
-        
-                stateCopy.myPostsMessage.push(post);
-                stateCopy.newPostText = '';
+            return { 
+                ...state,
+                newPostText: '',
+                myPostsMessages: [ ...state.myPostsMessages, {id: 4, likes: 0, message: str} ]
             }
-            return stateCopy;
         
         case UPDATE_NEW_MY_POST_TEXT:
-            stateCopy.newPostText = action.newText;
-            return stateCopy;
+            return {
+                ...state,
+                newPostText: action.newText
+            }
         default: 
-            return stateCopy;
+            return state;
     }
 }
 

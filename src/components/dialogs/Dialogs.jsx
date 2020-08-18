@@ -10,8 +10,8 @@ const Dialogs = (props) => {
     let dialogsNamesComponents = state.dialogsData.map((dialogName) => {
         return <DialogsItem id={dialogName.id} name={dialogName.name} key={dialogName.id} />
     });
-    let dialogsMessagesComponents = state.dialogsMessage.map((dialogMessage) => {
-        return <DialogsMessage message={dialogMessage.message} key={dialogMessage.id} />
+    let dialogsMessagesComponents = state.dialogsMessages.map((dialogMessages) => {
+        return <DialogsMessage message={dialogMessages.message} key={dialogMessages.id} />
     });
 
 

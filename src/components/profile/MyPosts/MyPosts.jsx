@@ -6,7 +6,7 @@ import './MyPosts.css';
 
 const MyPosts = (props) => {
 
-    let myPostsMessageComponents = props.myPostsMessage.map((myPost) => {
+    let myPostsMessageComponents = props.myPostsMessages.map((myPost) => {
         return <Post message={myPost.message} key={myPost.id} likes={myPost.likes} myAvatarURL={props.myAvatarURL} />
     });
     
