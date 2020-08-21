@@ -1,5 +1,5 @@
 import ProfileInfo from './ProfileInfo';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
 
 let mapAvatarToProps = (state) => {

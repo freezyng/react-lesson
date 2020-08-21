@@ -1,5 +1,5 @@
 import MyPosts from './MyPosts.jsx';
-import {addPostCreator, upDateNewMyPostTextCreator} from '../../../redux/profile-reducer.js';
+import { addPostCreator, upDateNewMyPostTextCreator } from '../../../redux/profile-reducer.js';
 import { connect } from 'react-redux';
 
 

@@ -18,6 +18,9 @@ const Navbar = () => {
                 <div className="navbar__link link-item">
                     <NavLink to='/news'>новости</NavLink>
                 </div>
+                <div className="navbar__link link-item">
+                    <NavLink to='/users'>поиск пользователя</NavLink>
+                </div>
             </div>
         </div>
     );
