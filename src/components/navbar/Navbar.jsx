@@ -13,13 +13,13 @@ const Navbar = () => {
                     <NavLink to='/dialogs'>Диалоги</NavLink>
                 </div>
                 <div className="navbar__link link-item">
+                    <NavLink to='/users'>Список пользователей</NavLink>
+                </div>
+                <div className="navbar__link link-item">
                     <NavLink to='/music'>Музыка</NavLink>
                 </div>
                 <div className="navbar__link link-item">
                     <NavLink to='/news'>Новости</NavLink>
-                </div>
-                <div className="navbar__link link-item">
-                    <NavLink to='/users'>Поиск пользователей</NavLink>
                 </div>
             </div>
         </div>
