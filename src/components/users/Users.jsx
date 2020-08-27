@@ -1,53 +1,36 @@
 import React from 'react';
 import './users.css';
-import * as axios from 'axios';
 import userAvatar from '../../assets/images/User.png';
 
-class Users extends React.Component {
+const Users = (props) => {
 
-    componentDidMount() {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then( (response) => {
-            this.props.setUsers([ ...response.data.items ]);
-            this.props.setTotalUsersCount( response.data.totalCount );
-        });
+    let pageCount = Math.ceil(props.totalUsersCount / props.pageSize);
+    let pages = [];
+
+    for (let i = 1; i <= pageCount; i++) {
+        pages.push(i);
     }
 
-    onPageChanget = (numPage) => {
-        this.props.setCurrentPage(numPage);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${numPage}&count=${this.props.pageSize}`).then( (response) => {
-            this.props.setUsers([ ...response.data.items ])
-        });
-    }
+    return <div className='users'>
 
-    render() {
-        let pageCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize);
-        let pages = [];
+        <div className='users__page-count'>
+            {pages.map(p => {
+                return <span className={props.currentPage === p ? 'active' : ''}
+                    onClick={() => { props.onPageChanget(p) }}> {p} </span>
+            })}
+        </div>
 
-        for(let i = 1; i <= pageCount; i++) {
-            pages.push(i);
-        }
-
-        return <div className='users'>
-
-            <div className='users__page-count'>
-                { pages.map( p => {
-                    return <span className={this.props.currentPage === p ? 'active' : ''}
-                    onClick={ () => { this.onPageChanget(p) } }> {p} </span>
-                })}
-            </div>
-
-            {this.props.users.map( (u) => 
-            {
-                return (
+        {props.users.map((u) => {
+            return (
                 <div key={u.id} className='user'>
                     <div>
                         <div className='user__avatar'>
-                            <img src={u.photos.large !== null ? u.photos.large : userAvatar } />
+                            <img src={u.photos.large !== null ? u.photos.large : userAvatar} />
                         </div>
                         <div className='user__btn'>
                             {u.followed
-                                ? <button onClick={() => this.props.unfollow(u.id) }>Отписаться</button>
-                                : <button onClick={() =>  this.props.follow(u.id) }>Подписаться</button>
+                                ? <button onClick={() => props.unfollow(u.id)}>Отписаться</button>
+                                : <button onClick={() => props.follow(u.id)}>Подписаться</button>
                             }
                         </div>
                     </div>
@@ -57,10 +40,9 @@ class Users extends React.Component {
                         {/* <div className='user__info-location'> {u.location.city} <br/> {u.location.country} </div> */}
                     </div>
                 </div>
-                )
-            })}
-        </div>
-    }
+            )
+        })}
+    </div>
 }
 
 export default Users;
