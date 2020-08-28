@@ -8,7 +8,8 @@ let initialState = {
     users: [],
     pageSize: 8,
     totalUsersCount: 20,
-    currentPage: 1
+    currentPage: 1,
+    setUsersLoader: true
 } 
 
 const usersReducer = (state = initialState, action) => {

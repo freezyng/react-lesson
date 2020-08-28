@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { followAC, unfollowAC, setUsersAC, setCurrentPageAC, setTotalUsersCountAC } from '../../redux/users-reducer';
 import Users from './Users';
 import * as axios from 'axios';
+import preLoader from './../../assets/images/usersPreloader.svg';
 
 
 class UsersAPIContainer extends React.Component {
@@ -22,15 +23,18 @@ class UsersAPIContainer extends React.Component {
     }
 
     render() {
-        return <Users 
-            users={this.props.users}
-            onPageChanget={this.onPageChanget}
-            totalUsersCount={this.props.totalUsersCount}
-            pageSize={this.props.pageSize}
-            currentPage={this.props.currentPage}
-            unfollow={this.props.unfollow}
-            follow={this.props.follow}
-        />
+        return <div>
+            { this.props.setUsersLoader ? <img src={preLoader}/> : null}
+            <Users
+                users={this.props.users}
+                onPageChanget={this.onPageChanget}
+                totalUsersCount={this.props.totalUsersCount}
+                pageSize={this.props.pageSize}
+                currentPage={this.props.currentPage}
+                unfollow={this.props.unfollow}
+                follow={this.props.follow}
+            />
+        </div>
     }
 }
 
@@ -39,7 +43,8 @@ let mapStateToProps = (state) =>{
         users: state.usersPage.users,
         pageSize: state.usersPage.pageSize,
         totalUsersCount: state.usersPage.totalUsersCount,
-        currentPage: state.usersPage.currentPage
+        currentPage: state.usersPage.currentPage,
+        setUsersLoader: state.usersPage.setUsersLoader
     }
 }
 
