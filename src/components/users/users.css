@@ -42,3 +42,11 @@
 .user__avatar img{
     width: 70px;
 }
+
+.users__preloader {
+    display: flex;
+    justify-content: center;
+}
+.users__preloader img {
+    margin-top: 50%;
+}

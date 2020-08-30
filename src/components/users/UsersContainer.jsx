@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { followAC, unfollowAC, setUsersAC, setCurrentPageAC, setTotalUsersCountAC } from '../../redux/users-reducer';
+import { followAC, unfollowAC, setUsersAC, setCurrentPageAC, setTotalUsersCountAC, setUsersLoaderAC } from '../../redux/users-reducer';
 import Users from './Users';
 import * as axios from 'axios';
 import preLoader from './../../assets/images/usersPreloader.svg';
@@ -9,22 +9,28 @@ import preLoader from './../../assets/images/usersPreloader.svg';
 class UsersAPIContainer extends React.Component {
 
     componentDidMount() {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then( (response) => {
+        this.props.setUsersLoader(true);
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+            .then( (response) => {
+            this.props.setUsersLoader(false);
             this.props.setUsers([ ...response.data.items ]);
             this.props.setTotalUsersCount( response.data.totalCount );
         });
     }
 
     onPageChanget = (numPage) => {
+        this.props.setUsersLoader(true);
+        this.props.setUsers([])
         this.props.setCurrentPage(numPage);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${numPage}&count=${this.props.pageSize}`).then( (response) => {
-            this.props.setUsers([ ...response.data.items ])
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${numPage}&count=${this.props.pageSize}`)
+            .then( (response) => {
+            this.props.setUsersLoader(false)
+            this.props.setUsers([ ...response.data.items ]);
         });
     }
 
     render() {
         return <div>
-            { this.props.setUsersLoader ? <img src={preLoader}/> : null}
             <Users
                 users={this.props.users}
                 onPageChanget={this.onPageChanget}
@@ -34,6 +40,7 @@ class UsersAPIContainer extends React.Component {
                 unfollow={this.props.unfollow}
                 follow={this.props.follow}
             />
+            <div className='users__preloader'>{ this.props.usersLoader ? <img src={preLoader} /> : null}</div>
         </div>
     }
 }
@@ -44,7 +51,7 @@ let mapStateToProps = (state) =>{
         pageSize: state.usersPage.pageSize,
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
-        setUsersLoader: state.usersPage.setUsersLoader
+        usersLoader: state.usersPage.usersLoader
     }
 }
 
@@ -64,6 +71,9 @@ let mapDicpatchToProps = (dispatch) =>{
         },
         setTotalUsersCount: (usersCount) => {
             dispatch(setTotalUsersCountAC(usersCount))
+        },
+        setUsersLoader: (usersLoader) => {
+            dispatch(setUsersLoaderAC(usersLoader))
         }
     }
 }

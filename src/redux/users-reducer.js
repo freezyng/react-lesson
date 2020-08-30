@@ -3,13 +3,14 @@ const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET-USERS';
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 const TOTAL_USERS_COUNT = 'TOTAL_USERS_COUNT';
+const USERS_LOADER = 'USERS_LOADER';
 
 let initialState = {
     users: [],
     pageSize: 8,
     totalUsersCount: 20,
     currentPage: 1,
-    setUsersLoader: true
+    usersLoader: true
 } 
 
 const usersReducer = (state = initialState, action) => {
@@ -50,6 +51,11 @@ const usersReducer = (state = initialState, action) => {
                 ...state,
                 totalUsersCount: action.totalCount
             }
+        case USERS_LOADER:
+            return{
+                ...state,
+                usersLoader: action.usersLoader
+            }    
         default:
             return state;
     }
@@ -71,7 +77,10 @@ const setCurrentPageAC = (numPage) => {
 const setTotalUsersCountAC = (totalCount) => {
     return {type: TOTAL_USERS_COUNT, totalCount}
 }
+const setUsersLoaderAC = (usersLoader) => {
+    return {type: USERS_LOADER, usersLoader}
+}
 
 
 
-export  {usersReducer, followAC, unfollowAC, setUsersAC, setCurrentPageAC, setTotalUsersCountAC};
+export  {usersReducer, followAC, unfollowAC, setUsersAC, setCurrentPageAC, setTotalUsersCountAC, setUsersLoaderAC};
