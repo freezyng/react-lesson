@@ -1,3 +1,7 @@
+.profile__preloader {
+    margin: 60px auto;
+}
+
 .profile {
     width: 100%;
     background-color: #fff;
@@ -30,4 +34,21 @@
     padding: 15px;
     border-bottom: 1px solid #E7E8EC;
     flex: auto;
+}
+
+.profile__fullName {
+    font-weight: bold;
+}
+
+.profile__lookingForAJob, .profile__lookingForAJobDescription, .profile__aboutMe {
+    margin-left: 20px;
+}
+
+.profile__contacts {
+    margin-top: 40px;
+    margin-left: 40px;
+}
+
+.profile__contacts div {
+    margin-bottom: 18px;
 }
