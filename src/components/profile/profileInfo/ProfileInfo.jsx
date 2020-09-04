@@ -7,12 +7,10 @@ const ProfileInfo = (props) => {
         return <div className='profile__preloader'>{ <img src={preLoader} />}</div>
     }
 
-    let arrayContacts = () => {
-        let a = [];
-        for(let key in props.profile.contacts) {
-            a.push(<div>{key}: {props.profile.contacts[key]}</div>);
-        }
-        return a;
+    let profileSocialContacts = [];
+    
+    for(let key in props.profile.contacts) {
+        profileSocialContacts.push(`${key}: ${props.profile.contacts[key] ? props.profile.contacts[key] : 'нет'}`);
     }
 
     return(  
@@ -38,7 +36,9 @@ const ProfileInfo = (props) => {
                 </div>
             </div>
             <div className="profile__contacts">
-                {arrayContacts()}
+                {profileSocialContacts.map(c => {
+                    return <div>{c}</div> 
+                })}
             </div>
         </div>
     )

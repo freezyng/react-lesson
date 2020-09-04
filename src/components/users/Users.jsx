@@ -16,7 +16,7 @@ const Users = (props) => {
 
         <div className='users__page-count'>
             {pages.map(p => {
-                return <span className={props.currentPage === p ? 'active' : ''}
+                return <span key={p} className={props.currentPage === p ? 'active' : ''}
                     onClick={() => { props.onPageChanget(p) }}> {p} </span>
             })}
         </div>
@@ -26,7 +26,7 @@ const Users = (props) => {
                 <div key={u.id} className='user'>
                     <div>
                         <div className='user__avatar'>
-                            <NavLink to={'/profile'}>
+                            <NavLink to={'/profile/' + u.id}>
                                 <img src={u.photos.large !== null ? u.photos.large : userAvatar} />
                             </NavLink>
                         </div>
