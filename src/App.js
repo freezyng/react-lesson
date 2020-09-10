@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import Header from './components/header/Header';
+import HeaderContainer from './components/header/HeaderContainer';
 import Navbar from './components/navbar/Navbar';
 import ProfileContainer from './components/profile/ProfileContainer';
 import DialogsContainer from './components/dialogs/DialogsContainer';
@@ -10,7 +10,7 @@ import UsersContainer from './components/users/UsersContainer';
 const App = (props) => {
     return (
             <div className="App">
-                <Header />
+                <HeaderContainer />
 
                 <div className="wrap-navbar-content container">
                     <Navbar />
