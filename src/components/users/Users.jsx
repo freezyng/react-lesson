@@ -2,6 +2,7 @@ import React from 'react';
 import './users.css';
 import userAvatar from '../../assets/images/User.png';
 import {NavLink} from 'react-router-dom';
+import * as axios from 'axios';
 
 const Users = (props) => {
 
@@ -32,8 +33,33 @@ const Users = (props) => {
                         </div>
                         <div className='user__btn'>
                             {u.followed
-                                ? <button onClick={() => props.unfollow(u.id)}>Отписаться</button>
-                                : <button onClick={() => props.follow(u.id)}>Подписаться</button>
+                                ? <button onClick={() => {
+                                    axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {
+                                        withCredentials: true,
+                                        headers: {
+                                            "API-KEY": "9edd4cba-6199-4437-97ac-0c592ce7685a"
+                                        }
+                                        })
+                                        .then(response => {
+                                            if(response.data.resultCode === 0){
+                                                props.unfollow(u.id)
+                                            }
+                                        })
+                                    }
+                                }>Отписаться</button>
+                                : <button onClick={() => {
+                                    axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {}, {
+                                        withCredentials: true,
+                                        headers: {
+                                            "API-KEY": "9edd4cba-6199-4437-97ac-0c592ce7685a"
+                                        }
+                                    })
+                                        .then(response => {
+                                            if(response.data.resultCode === 0){
+                                                props.follow(u.id)
+                                            }
+                                        })
+                                    }}>Подписаться</button>
                             }
                         </div>
                     </div>

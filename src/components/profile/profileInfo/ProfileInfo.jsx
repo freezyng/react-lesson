@@ -37,7 +37,7 @@ const ProfileInfo = (props) => {
             </div>
             <div className="profile__contacts">
                 {profileSocialContacts.map(c => {
-                    return <div>{c}</div> 
+                    return <div>{c}</div>
                 })}
             </div>
         </div>

@@ -10,7 +10,7 @@ class UsersAPIContainer extends React.Component {
 
     componentDidMount() {
         this.props.setUsersLoader(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`, {withCredentials: true})
             .then( (response) => {
             this.props.setUsersLoader(false);
             this.props.setUsers([ ...response.data.items ]);
@@ -22,7 +22,7 @@ class UsersAPIContainer extends React.Component {
         this.props.setUsersLoader(true);
         this.props.setUsers([])
         this.props.setCurrentPage(numPage);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${numPage}&count=${this.props.pageSize}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${numPage}&count=${this.props.pageSize}`, {withCredentials: true})
             .then( (response) => {
             this.props.setUsersLoader(false)
             this.props.setUsers([ ...response.data.items ]);
