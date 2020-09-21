@@ -4,17 +4,17 @@ import { followAC, unfollowAC, setUsersAC, setCurrentPageAC, setTotalUsersCountA
 import Users from './Users';
 import * as axios from 'axios';
 import preLoader from './../../assets/images/usersPreloader.svg';
+import { getUsers } from '../../api/api';
 
 
 class UsersAPIContainer extends React.Component {
 
     componentDidMount() {
         this.props.setUsersLoader(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`, {withCredentials: true})
-            .then( (response) => {
+        getUsers(this.props.currentPage, this.props.pageSize).then( (response) => {
             this.props.setUsersLoader(false);
-            this.props.setUsers([ ...response.data.items ]);
-            this.props.setTotalUsersCount( response.data.totalCount );
+            this.props.setUsers([ ...response.items ]);
+            this.props.setTotalUsersCount( response.totalCount );
         });
     }
 
@@ -22,10 +22,9 @@ class UsersAPIContainer extends React.Component {
         this.props.setUsersLoader(true);
         this.props.setUsers([])
         this.props.setCurrentPage(numPage);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${numPage}&count=${this.props.pageSize}`, {withCredentials: true})
-            .then( (response) => {
+        getUsers(numPage, this.props.pageSize).then( (response) => {
             this.props.setUsersLoader(false)
-            this.props.setUsers([ ...response.data.items ]);
+            this.props.setUsers([ ...response.items ]);
         });
     }
 
