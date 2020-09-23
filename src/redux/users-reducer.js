@@ -4,13 +4,15 @@ const SET_USERS = 'SET-USERS';
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 const TOTAL_USERS_COUNT = 'TOTAL_USERS_COUNT';
 const USERS_LOADER = 'USERS_LOADER';
+const TOGGLE_IS_FOLLOW_PROGRESS = 'TOGGLE_IS_FOLLOW_PROGRESS';
 
 let initialState = {
     users: [],
     pageSize: 8,
     totalUsersCount: 20,
     currentPage: 1,
-    usersLoader: true
+    usersLoader: true,
+    followInProgress: []
 } 
 
 const usersReducer = (state = initialState, action) => {
@@ -55,7 +57,14 @@ const usersReducer = (state = initialState, action) => {
             return{
                 ...state,
                 usersLoader: action.usersLoader
-            }    
+            }
+        case TOGGLE_IS_FOLLOW_PROGRESS:
+            return{
+                ...state,
+                followInProgress: action.isFetching
+                ? [...state.followInProgress, action.userId]
+                : state.followInProgress.filter(id => id !== action.userId)
+            }
         default:
             return state;
     }
@@ -80,7 +89,10 @@ const setTotalUsersCountAC = (totalCount) => {
 const setUsersLoaderAC = (usersLoader) => {
     return {type: USERS_LOADER, usersLoader}
 }
+const toggleIsFollowingProgressAC = (isFetching, userId) => {
+    return {type: TOGGLE_IS_FOLLOW_PROGRESS, isFetching, userId}
+}
 
 
 
-export  {usersReducer, followAC, unfollowAC, setUsersAC, setCurrentPageAC, setTotalUsersCountAC, setUsersLoaderAC};
+export  {usersReducer, followAC, unfollowAC, setUsersAC, setCurrentPageAC, setTotalUsersCountAC, setUsersLoaderAC, toggleIsFollowingProgressAC};

@@ -5,7 +5,6 @@ import {NavLink} from 'react-router-dom';
 import {followedDelete, followedPost} from './../../api/api';
 
 
-
 const Users = (props) => {
 
     let pageCount = Math.ceil(props.totalUsersCount / props.pageSize);
@@ -41,21 +40,25 @@ const Users = (props) => {
                         </div>
                         <div className='user__btn'>
                             {u.followed
-                                ? <button onClick={() => {
+                                ? <button disabled={props.followInProgress.some(id => id == u.id)} onClick={() => {
+                                    props.toggleIsFollowingProgress(true, u.id)
                                     followedDelete(u.id)
-                                        .then(response => {
-                                            if(response.resultCode === 0){
-                                                props.unfollow(u.id)
-                                            }
+                                    .then((response) => {
+                                        if(response.resultCode === 0){
+                                            props.unfollow(u.id)
+                                        }
+                                        props.toggleIsFollowingProgress(false, u.id)
                                     })
                                     }
                                 }>Отписаться</button>
-                                : <button onClick={() => {
+                                : <button disabled={props.followInProgress.some(id => id == u.id)} onClick={() => {
+                                    props.toggleIsFollowingProgress(true, u.id)
                                     followedPost(u.id)
-                                        .then(response => {
+                                        .then((response) => {
                                             if(response.resultCode === 0){
                                                 props.follow(u.id)
                                             }
+                                            props.toggleIsFollowingProgress(false, u.id)
                                         })
                                     }}>Подписаться</button>
                             }

@@ -1,8 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { followAC, unfollowAC, setUsersAC, setCurrentPageAC, setTotalUsersCountAC, setUsersLoaderAC } from '../../redux/users-reducer';
+import { followAC, unfollowAC, setUsersAC, setCurrentPageAC, setTotalUsersCountAC, setUsersLoaderAC, toggleIsFollowingProgressAC } from '../../redux/users-reducer';
 import Users from './Users';
-import * as axios from 'axios';
 import preLoader from './../../assets/images/usersPreloader.svg';
 import { getUsers } from '../../api/api';
 
@@ -38,6 +37,8 @@ class UsersAPIContainer extends React.Component {
                 currentPage={this.props.currentPage}
                 unfollow={this.props.unfollow}
                 follow={this.props.follow}
+                followInProgress= {this.props.followInProgress}
+                toggleIsFollowingProgress={this.props.toggleIsFollowingProgress}
             />
             <div className='users__preloader'>{ this.props.usersLoader ? <img src={preLoader} /> : null}</div>
         </div>
@@ -50,7 +51,8 @@ let mapStateToProps = (state) =>{
         pageSize: state.usersPage.pageSize,
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
-        usersLoader: state.usersPage.usersLoader
+        usersLoader: state.usersPage.usersLoader,
+        followInProgress: state.usersPage.followInProgress
     }
 }
 
@@ -73,6 +75,9 @@ let mapDicpatchToProps = (dispatch) =>{
         },
         setUsersLoader: (usersLoader) => {
             dispatch(setUsersLoaderAC(usersLoader))
+        },
+        toggleIsFollowingProgress: (isFetching, userId) => {
+            dispatch(toggleIsFollowingProgressAC(isFetching, userId))
         }
     }
 }
