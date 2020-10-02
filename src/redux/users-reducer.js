@@ -1,3 +1,5 @@
+import {getUsers, followedDelete, followedPost} from './../api/api';
+
 const FOLLOW = 'FOLLOW';    
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET-USERS';
@@ -71,28 +73,67 @@ const usersReducer = (state = initialState, action) => {
 
 }
 
-const followAC = (userId) => {
+const follow = (userId) => {
     return {type: FOLLOW, userId}
 }
-const unfollowAC = (userId) => {
+const unfollow = (userId) => {
     return {type: UNFOLLOW, userId}
 }
-const setUsersAC = (users) => {
+const setUsers = (users) => {
     return {type: SET_USERS, users}
 }
-const setCurrentPageAC = (numPage) => {
+const setCurrentPage = (numPage) => {
     return {type: SET_CURRENT_PAGE, numPage}
 }
-const setTotalUsersCountAC = (totalCount) => {
+const setTotalUsersCount = (totalCount) => {
     return {type: TOTAL_USERS_COUNT, totalCount}
 }
-const setUsersLoaderAC = (usersLoader) => {
+const setUsersLoader = (usersLoader) => {
     return {type: USERS_LOADER, usersLoader}
 }
-const toggleIsFollowingProgressAC = (isFetching, userId) => {
+const toggleIsFollowingProgress = (isFetching, userId) => {
     return {type: TOGGLE_IS_FOLLOW_PROGRESS, isFetching, userId}
 }
 
+const getUsersThunk = (currentPage, pageSize) => {
+    return (dispatch) => {
+        dispatch(setUsers([]));
+        dispatch(setUsersLoader(true));
+        dispatch(setCurrentPage(currentPage));
+        getUsers(currentPage, pageSize).then( (response) => {
+            dispatch(setUsersLoader(false));
+            dispatch(setUsers([ ...response.items ]));
+            dispatch(setTotalUsersCount( response.totalCount ));
+        });
+    }
+}
+
+const unfollowThunk = (userId) => {
+    return (dispatch) => {
+        dispatch(toggleIsFollowingProgress(true, userId));
+            followedDelete(userId)
+            .then((response) => {
+                if(response.resultCode === 0){
+                    dispatch(unfollow(userId));
+                }
+                dispatch(toggleIsFollowingProgress(false, userId));
+            })
+    }
+}
+
+const followThunk = (userId) => {
+    return (dispatch) => {
+        dispatch(toggleIsFollowingProgress(true, userId));
+            followedPost(userId)
+            .then((response) => {
+                if(response.resultCode === 0){
+                    dispatch(follow(userId));
+                }
+                dispatch(toggleIsFollowingProgress(false, userId));
+            })
+    }
+}
 
 
-export  {usersReducer, followAC, unfollowAC, setUsersAC, setCurrentPageAC, setTotalUsersCountAC, setUsersLoaderAC, toggleIsFollowingProgressAC};
+
+export  {usersReducer, unfollowThunk, followThunk, follow, unfollow, getUsersThunk};

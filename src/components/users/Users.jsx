@@ -2,7 +2,6 @@ import React from 'react';
 import './users.css';
 import userAvatar from '../../assets/images/User.png';
 import {NavLink} from 'react-router-dom';
-import {followedDelete, followedPost} from './../../api/api';
 
 
 const Users = (props) => {
@@ -40,27 +39,12 @@ const Users = (props) => {
                         </div>
                         <div className='user__btn'>
                             {u.followed
-                                ? <button disabled={props.followInProgress.some(id => id == u.id)} onClick={() => {
-                                    props.toggleIsFollowingProgress(true, u.id)
-                                    followedDelete(u.id)
-                                    .then((response) => {
-                                        if(response.resultCode === 0){
-                                            props.unfollow(u.id)
-                                        }
-                                        props.toggleIsFollowingProgress(false, u.id)
-                                    })
-                                    }
+                                ? <button disabled={props.followInProgress.some(id => id === u.id)}
+                                    onClick={() => { props.unfollowThunk(u.id) }
                                 }>Отписаться</button>
-                                : <button disabled={props.followInProgress.some(id => id == u.id)} onClick={() => {
-                                    props.toggleIsFollowingProgress(true, u.id)
-                                    followedPost(u.id)
-                                        .then((response) => {
-                                            if(response.resultCode === 0){
-                                                props.follow(u.id)
-                                            }
-                                            props.toggleIsFollowingProgress(false, u.id)
-                                        })
-                                    }}>Подписаться</button>
+                                : <button disabled={props.followInProgress.some(id => id === u.id)} 
+                                    onClick={() => { props.followThunk(u.id) }
+                                }>Подписаться</button>
                             }
                         </div>
                     </div>
