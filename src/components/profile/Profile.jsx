@@ -4,6 +4,7 @@ import ProfileInfo from './profileInfo/ProfileInfo';
 import './Profile.css';
 
 const Profile = (props) => {
+
     return (
         <div className="profile">
             <ProfileInfo profile={props.profile}/>

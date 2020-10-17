@@ -16,6 +16,8 @@ class UsersAPIContainer extends React.Component {
     }
 
     render() {
+            
+
         return <div>
             <Users
                 users={this.props.users}
@@ -28,6 +30,7 @@ class UsersAPIContainer extends React.Component {
                 followInProgress= {this.props.followInProgress}
                 unfollowThunk={this.props.unfollowThunk}
                 followThunk={this.props.followThunk}
+                isAuth={this.props.isAuth}
             />
             <div className='users__preloader'>{ this.props.usersLoader ? <img src={preLoader} /> : null}</div>
         </div>
@@ -41,7 +44,8 @@ let mapStateToProps = (state) =>{
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
         usersLoader: state.usersPage.usersLoader,
-        followInProgress: state.usersPage.followInProgress
+        followInProgress: state.usersPage.followInProgress,
+        isAuth: state.authUser.isAuth
     }
 }
 

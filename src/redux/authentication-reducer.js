@@ -1,3 +1,5 @@
+import { authAPI } from './../api/api';
+
 const SET_USER_DATA = 'SET_USER_DATA';
 
 let initialState = {
@@ -25,6 +27,18 @@ const setAuthUserData = (email, login, userId) => {
     return {type: SET_USER_DATA, data: {email, login, userId}}
 }
 
+const authMeThunk = () => {
+    return (dispatch) => {
+        authAPI.me()
+        .then( (response) => {
+            if(response.data.resultCode === 0){
+                let {email, login, id} = response.data.data
+                dispatch(setAuthUserData(email, login, id))
+            }
+        })
+    }
+}
 
 
-export  {authUser, setAuthUserData};
+
+export  {authUser, setAuthUserData, authMeThunk};

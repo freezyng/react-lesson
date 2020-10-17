@@ -1,4 +1,4 @@
-import {getUsers, followedDelete, followedPost} from './../api/api';
+import {usersAPI} from './../api/api';
 
 const FOLLOW = 'FOLLOW';    
 const UNFOLLOW = 'UNFOLLOW';
@@ -100,7 +100,7 @@ const getUsersThunk = (currentPage, pageSize) => {
         dispatch(setUsers([]));
         dispatch(setUsersLoader(true));
         dispatch(setCurrentPage(currentPage));
-        getUsers(currentPage, pageSize).then( (response) => {
+        usersAPI.getUsers(currentPage, pageSize).then( (response) => {
             dispatch(setUsersLoader(false));
             dispatch(setUsers([ ...response.items ]));
             dispatch(setTotalUsersCount( response.totalCount ));
@@ -111,7 +111,7 @@ const getUsersThunk = (currentPage, pageSize) => {
 const unfollowThunk = (userId) => {
     return (dispatch) => {
         dispatch(toggleIsFollowingProgress(true, userId));
-            followedDelete(userId)
+        usersAPI.followedDelete(userId)
             .then((response) => {
                 if(response.resultCode === 0){
                     dispatch(unfollow(userId));
@@ -124,7 +124,7 @@ const unfollowThunk = (userId) => {
 const followThunk = (userId) => {
     return (dispatch) => {
         dispatch(toggleIsFollowingProgress(true, userId));
-            followedPost(userId)
+        usersAPI.followedPost(userId)
             .then((response) => {
                 if(response.resultCode === 0){
                     dispatch(follow(userId));

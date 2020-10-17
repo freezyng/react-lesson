@@ -2,7 +2,6 @@ import React from 'react';
 import preLoader from './../../../assets/images/usersPreloader.svg';
 
 const ProfileInfo = (props) => {
-    
     if(!props.profile) {
         return <div className='profile__preloader'>{ <img src={preLoader} />}</div>
     }
