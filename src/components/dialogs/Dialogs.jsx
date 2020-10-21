@@ -24,9 +24,6 @@ const Dialogs = (props) => {
         props.upDateNewMessageText(text);
     }
 
-    if(!props.isAuth){
-        return <Redirect to='/login'/>
-    }
 
     return (
         <div className="dialogs">
