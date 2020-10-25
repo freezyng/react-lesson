@@ -52,3 +52,12 @@
 .profile__contacts div {
     margin-bottom: 18px;
 }
+
+.profile-status .profile-status__text {
+    cursor: pointer;
+}
+
+.profile-status input {
+    border: none;
+    border-bottom: 1px solid grey;
+}

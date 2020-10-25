@@ -1,5 +1,6 @@
 import React from 'react';
 import preLoader from './../../../assets/images/usersPreloader.svg';
+import ProfileStatus from './ProfileStatus';
 
 const ProfileInfo = (props) => {
     if(!props.profile) {
@@ -19,7 +20,7 @@ const ProfileInfo = (props) => {
             </div>
             <div className="profile__description">
                 <div className="profile__fullName">
-                    {props.profile.fullName}
+                    <h2>{props.profile.fullName}</h2>
                 </div>
                 <br/>
                 <div className="profile__aboutMe">
@@ -34,6 +35,9 @@ const ProfileInfo = (props) => {
                     Описание работы которую ищу: {props.profile.lookingForAJobDescription}
                 </div>
             </div>
+            
+            <ProfileStatus status={'eeeee'}/>
+
             <div className="profile__contacts">
                 {profileSocialContacts.map(c => {
                     return <div>{c}</div>
