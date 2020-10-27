@@ -55,9 +55,15 @@
 
 .profile-status .profile-status__text {
     cursor: pointer;
+    background-color: #EDEEF0;
+    min-width: 200px;
+    min-height: 28px;
 }
 
 .profile-status input {
     border: none;
-    border-bottom: 1px solid grey;
+    border-bottom: 1px solid #EDEEF0;
+    background-color: #EDEEF0;
+    min-width: 200px;
+    min-height: 28px;
 }

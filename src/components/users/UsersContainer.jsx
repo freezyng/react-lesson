@@ -32,7 +32,7 @@ class UsersAPIContainer extends React.Component {
                 followThunk={this.props.followThunk}
                 isAuth={this.props.isAuth}
             />
-            <div className='users__preloader'>{ this.props.usersLoader ? <img src={preLoader} /> : null}</div>
+            <div className='users__preloader'>{ this.props.usersLoader ? <img src={preLoader} alt='1'/> : null}</div>
         </div>
     }
 }

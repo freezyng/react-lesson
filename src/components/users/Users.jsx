@@ -34,7 +34,7 @@ const Users = (props) => {
                     <div>
                         <div className='user__avatar'>
                             <NavLink to={'/profile/' + u.id}>
-                                <img src={u.photos.large !== null ? u.photos.large : userAvatar} />
+                                <img src={u.photos.large !== null ? u.photos.large : userAvatar} alt='1'/>
                             </NavLink>
                         </div>
                         <div className='user__btn'>

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
 import './Dialogs.css';
 import { DialogsItem, DialogsMessage } from './Item-message/DialogsItem-message.jsx';
 

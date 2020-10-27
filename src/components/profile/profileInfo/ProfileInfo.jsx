@@ -4,16 +4,18 @@ import ProfileStatus from './ProfileStatus';
 
 const ProfileInfo = (props) => {
     if(!props.profile) {
-        return <div className='profile__preloader'>{ <img src={preLoader} />}</div>
+        return <div className='profile__preloader'>{ <img src={preLoader} alt='1'/>}</div>
     }
 
     let profileSocialContacts = [];
-    
-    for(let key in props.profile.contacts) {
-        profileSocialContacts.push(`${key}: ${props.profile.contacts[key] ? props.profile.contacts[key] : 'нет'}`);
-    }
 
-    return(  
+    for(let key in props.profile.contacts) {
+        if(props.profile.contacts[key]){
+            profileSocialContacts.push(`${key}: ${props.profile.contacts[key]}`);
+        }
+    }   
+    return(
+        
         <div className="profile-info">
             <div className="profile__avatar">
                 <img src={props.profile.photos.large} alt="avatar" />
@@ -36,7 +38,7 @@ const ProfileInfo = (props) => {
                 </div>
             </div>
             
-            <ProfileStatus status={'eeeee'}/>
+            <ProfileStatus status={props.status} updateStatus={props.updateStatus} />
 
             <div className="profile__contacts">
                 {profileSocialContacts.map(c => {
