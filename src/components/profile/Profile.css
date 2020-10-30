@@ -56,6 +56,7 @@
 .profile-status .profile-status__text {
     cursor: pointer;
     background-color: #EDEEF0;
+    padding: 5px;
     min-width: 200px;
     min-height: 28px;
 }
@@ -64,6 +65,7 @@
     border: none;
     border-bottom: 1px solid #EDEEF0;
     background-color: #EDEEF0;
+    padding: 5px;
     min-width: 200px;
     min-height: 28px;
 }
