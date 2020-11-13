@@ -1,6 +1,5 @@
 import {authAPI, profileAPI} from './../api/api';
 
-const UPDATE_NEW_MY_POST_TEXT = 'UPDATE-NEW-MY-POST-TEXT';
 const ADD_MY_POST = 'ADD-MY-POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_STATUS = 'SET_STATUS';
@@ -12,7 +11,6 @@ let initialState = {
         { id: 2, likes: 2, message: 'asdsd asd ww e qwe' },
         { id: 3, likes: 0, message: `hello!! jdffffffffk` }
     ],
-    newPostText: '',
     profile: null,
     status: null
 };
@@ -21,18 +19,11 @@ const profileReducer = (state = initialState, action) => {
 
     switch(action.type) {
         case ADD_MY_POST:
-            let str = state.newPostText;
+            let str = action.newMyPost;
 
             return { 
                 ...state,
-                newPostText: '',
-                myPostsMessages: [ ...state.myPostsMessages, {id: 4, likes: 0, message: str} ]
-            }
-        
-        case UPDATE_NEW_MY_POST_TEXT:
-            return {
-                ...state,
-                newPostText: action.newText
+                myPostsMessages: [ ...state.myPostsMessages, {id: ++state.myPostsMessages.length, likes: 0, message: str} ]
             }
         case SET_USER_PROFILE:
             return{
@@ -50,11 +41,8 @@ const profileReducer = (state = initialState, action) => {
 }
 
 
-const addPostCreator = () => {
-    return {type: ADD_MY_POST}
-}
-const upDateNewMyPostTextCreator = (text) => {
-    return {type: UPDATE_NEW_MY_POST_TEXT, newText: text}
+const addPostCreator = (newMyPost) => {
+    return {type: ADD_MY_POST, newMyPost}
 }
 const setUserProfile = (profile) => {
     return{type: SET_USER_PROFILE, profile}
@@ -92,4 +80,4 @@ const getProfileThunk = (userId) => {
     }
 }
 
-export {profileReducer, addPostCreator, upDateNewMyPostTextCreator, getProfileThunk, getStatus, updateStatus};
+export {profileReducer, addPostCreator, getProfileThunk, getStatus, updateStatus};
