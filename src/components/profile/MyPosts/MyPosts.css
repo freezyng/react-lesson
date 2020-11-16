@@ -9,9 +9,12 @@
     justify-content: flex-end;
 }
 
+.my_posts__new_post .form-control {
+    width: 100%;
+}
+
 .my_posts__new_post textarea {
     padding: 25px 10px;
     margin: 10px 0;
     width: 100%;
 }
-
