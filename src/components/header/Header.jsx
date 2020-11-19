@@ -9,10 +9,16 @@ const Header = (props) => {
                 <div className="header__menu">
                     <div className="header__link link-item">поиск</div>
                     {
-                        props.isAuth ? props.login
-                            :<NavLink to='/login' className="header__link link-item">вход</NavLink>
+                        props.isAuth 
+                            ?   <div>
+                                    <NavLink to='/profile' className="header__link link-item">{props.login}</NavLink> 
+                                    <NavLink to='/' onClick={props.logoutThunk} className="header__link link-item">Выйти</NavLink>
+                                </div>
+                            :   <div> 
+                                    <NavLink to='/login' className="header__link link-item">вход</NavLink>
+                                    <NavLink to='/' className="header__link link-item">регистрация</NavLink>
+                                </div>
                     }
-                    <NavLink to='/' className="header__link link-item">регистрация</NavLink>
                     <NavLink to='/' className="header__link link-item">настройки</NavLink>
                 </div>
             </div>

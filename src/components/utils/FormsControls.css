@@ -1,4 +1,6 @@
-
+input:focus {
+    outline: none;
+}
 
 .form-control.error input,
 .form-control.error textarea {
