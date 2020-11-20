@@ -20,21 +20,25 @@ const Login = (props) => {
         return <Redirect to='/profile' />
     }
 
-    return <div className='login'>
+    return (
+    <div className='login'>
         <h1>login</h1>
         <LoginReduxForm onSubmit={onSubmit}/>
-    </div>
+    </div>)
 }
 
 
 const LoginForm = (props) => {
-    return <form onSubmit={props.handleSubmit}>
+    return (
+    <form onSubmit={props.handleSubmit}>
         <Field placeholder='email' name='email' component={InputElem} validate={[required, maxLength30]}/>
         <Field placeholder='password' name='password' type='password' component={InputElem} validate={[required, maxLength30]}/>
         Запомнить меня
         <Field type="checkbox" name='rememberMe' component={InputElem}/>
+        {props.error && <div className='login-form__error'>{`${props.error} !!!`}</div>
+        }
         <button className='btn'>Войти</button>
-    </form>
+    </form>)
 }
 
 const LoginReduxForm = reduxForm({form: 'login'})(LoginForm);
