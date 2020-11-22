@@ -27,9 +27,9 @@ const setAuthUserData = (email, login, userId, isAuth) => {
     return {type: SET_USER_DATA, data: {email, login, userId, isAuth}}
 }
 
-const authMeThunk = () => {
+const setAuthUserDataThunk = () => {
     return (dispatch) => {
-        authAPI.me()
+        return authAPI.me()
         .then( (response) => {
             if(response.data.resultCode === 0){
                 let {email, login, id} = response.data.data
@@ -44,7 +44,7 @@ const loginThunk = (email, password, rememberMe) => {
         authAPI.login(email, password, rememberMe)
         .then( (response) => {
             if(response.data.resultCode === 0){
-                dispatch(authMeThunk());
+                dispatch(setAuthUserDataThunk());
             } else {
                 dispatch(stopSubmit('login', {_error: response.data.messages}));
             }
@@ -64,4 +64,4 @@ const logoutThunk = () => {
 }
 
 
-export  {authUser, setAuthUserData, authMeThunk, loginThunk, logoutThunk};
+export  {authUser, setAuthUserData, setAuthUserDataThunk, loginThunk, logoutThunk};
