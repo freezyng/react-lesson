@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { follow, unfollow, getUsersThunk, followThunk, unfollowThunk} from '../../redux/users-reducer';
 import Users from './Users';
 import preLoader from './../../assets/images/usersPreloader.svg';
+import {isAuthSelector, followInProgressSelector, usersLoaderSelector, currentPageSelector, totalUsersCountSelector, pageSizeSelector, getUsersSelector} from './../../redux/usersContainer-selectors';
 
 
 class UsersAPIContainer extends React.Component {
@@ -39,13 +40,13 @@ class UsersAPIContainer extends React.Component {
 
 let mapStateToProps = (state) =>{
     return {
-        users: state.usersPage.users,
-        pageSize: state.usersPage.pageSize,
-        totalUsersCount: state.usersPage.totalUsersCount,
-        currentPage: state.usersPage.currentPage,
-        usersLoader: state.usersPage.usersLoader,
-        followInProgress: state.usersPage.followInProgress,
-        isAuth: state.authUser.isAuth
+        users: getUsersSelector(state),
+        pageSize: pageSizeSelector(state),
+        totalUsersCount: totalUsersCountSelector(state),
+        currentPage: currentPageSelector(state),
+        usersLoader: usersLoaderSelector(state),
+        followInProgress: followInProgressSelector(state),
+        isAuth: isAuthSelector(state)
     }
 }
 
