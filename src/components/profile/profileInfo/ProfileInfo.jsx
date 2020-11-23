@@ -15,7 +15,6 @@ const ProfileInfo = (props) => {
         }
     }   
     return(
-        
         <div className="profile-info">
             <div className="profile__avatar">
                 <img src={props.profile.photos.large} alt="avatar" />

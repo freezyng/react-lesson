@@ -4,6 +4,12 @@
     box-sizing: border-box;
 }
 
+.app__preloader {
+    display: flex;
+    justify-content: center;
+    margin-top: 20%;
+}
+
 a {
     text-decoration: none;
     color: black;

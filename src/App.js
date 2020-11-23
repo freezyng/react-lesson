@@ -9,6 +9,7 @@ import UsersContainer from './components/users/UsersContainer';
 import Login from './components/login/Login';
 import { connect } from 'react-redux';
 import { initializeApp } from './redux/app-reducer';
+import preLoader from './assets/images/usersPreloader.svg';
 
 class App extends React.Component {
 
@@ -17,6 +18,11 @@ class App extends React.Component {
     }
 
     render() {
+        
+        if(!this.props.initialized) {
+            return <div className='app__preloader'>{ <img src={preLoader} alt='1'/>}</div>
+        }
+
         return (
                 <div className="App">
                     <HeaderContainer />
@@ -50,5 +56,10 @@ class App extends React.Component {
     }
 }
 
+const mapStateToProps = (state) => {
+    return {
+        initialized: state.appPage.initialized
+    }
+}
 
-export default connect(null, { initializeApp } )(App);
+export default connect(mapStateToProps, { initializeApp } )(App);

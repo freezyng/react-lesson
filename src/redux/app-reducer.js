@@ -25,8 +25,9 @@ const initializedSuccess = () => {
 
 const initializeApp = () => {
     return (dispatch) => {
-        dispatch(setAuthUserDataThunk()).then(() => {
-            dispatch(initializedSuccess())
+        Promise.all([dispatch(setAuthUserDataThunk())])
+            .then(() => {
+                dispatch(initializedSuccess())
         })
     }
 }
