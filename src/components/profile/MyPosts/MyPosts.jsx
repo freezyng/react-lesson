@@ -8,7 +8,8 @@ import { FormComponent } from '../../utils/FormsControls.jsx';
 const maxLength30 = maxLength(30);
 const Textarea = FormComponent("textarea");
 
-const MyPosts = (props) => {
+const MyPosts = React.memo((props) => {
+    
     let myPostsMessageComponents = props.myPostsMessages.map((myPost) => {
         return <Post message={myPost.message} key={myPost.id} likes={myPost.likes} myAvatarURL={props.myAvatarURL} />
     });
@@ -17,7 +18,7 @@ const MyPosts = (props) => {
         props.addPost(formData.newMyPost);
     }
 
-    return (
+    return(
         <div className="my_posts">
             <h3>Новый пост</h3>
 
@@ -30,7 +31,7 @@ const MyPosts = (props) => {
             </div>
         </div>
     );
-}
+})
 
 const MyPostForm = (props) => {
 
