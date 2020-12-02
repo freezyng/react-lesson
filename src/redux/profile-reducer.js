@@ -1,4 +1,4 @@
-import {authAPI, profileAPI} from './../api/api';
+import { authAPI, profileAPI } from './../api/api';
 
 const ADD_MY_POST = 'ADD-MY-POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
@@ -17,17 +17,17 @@ let initialState = {
 
 const profileReducer = (state = initialState, action) => {
 
-    switch(action.type) {
+    switch (action.type) {
         case ADD_MY_POST:
-            return { 
+            return {
                 ...state,
                 myPostsMessages: [
-                    ...state.myPostsMessages, 
-                    {id: ++state.myPostsMessages.length, likes: 0, message: action.newMyPost}
+                    ...state.myPostsMessages,
+                    { id: ++state.myPostsMessages.length, likes: 0, message: action.newMyPost }
                 ]
             }
         case SET_USER_PROFILE:
-            return{
+            return {
                 ...state,
                 profile: action.profile
             }
@@ -36,49 +36,43 @@ const profileReducer = (state = initialState, action) => {
                 ...state,
                 status: action.status
             }
-        default: 
+        default:
             return state;
     }
 }
 
 
 const addPostCreator = (newMyPost) => {
-    return {type: ADD_MY_POST, newMyPost}
+    return { type: ADD_MY_POST, newMyPost }
 }
 const setUserProfile = (profile) => {
-    return{type: SET_USER_PROFILE, profile}
+    return { type: SET_USER_PROFILE, profile }
 }
 const setStatus = (status) => {
-    return{type: SET_STATUS, status}
+    return { type: SET_STATUS, status }
 }
 
 const getStatus = (userId) => {
-    return (dispatch) => {
-        profileAPI.getStatus(userId)
-        .then( (response) => {
-            dispatch(setStatus(response.data))
-        });
+    return async (dispatch) => {
+        let response = await profileAPI.getStatus(userId)
+        dispatch(setStatus(response.data));
     }
 }
 
 const updateStatus = (status) => {
-    return (dispatch) => {
-        profileAPI.updateStatus(status)
-        .then( (response) => {
-            if(response.data.resultCode === 0){
-                dispatch(setStatus(status))
-            }
-        });
+    return async (dispatch) => {
+        let response = await profileAPI.updateStatus(status)
+        if (response.data.resultCode === 0) {
+            dispatch(setStatus(status))
+        }
     }
 }
 
 const getProfileThunk = (userId) => {
-    return (dispatch) => {
-        authAPI.getProfile(userId)
-        .then( (response) => {
-            dispatch(setUserProfile( response.data ))
-        });
+    return async (dispatch) => {
+        let response = await authAPI.getProfile(userId)
+        dispatch(setUserProfile(response.data))
     }
 }
 
-export {profileReducer, addPostCreator, getProfileThunk, getStatus, updateStatus};
+export { profileReducer, addPostCreator, getProfileThunk, getStatus, updateStatus };
