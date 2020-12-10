@@ -7,13 +7,24 @@
 
 .users__page-count-wrap{
     display: flex;
+    justify-content: center;
 }
 
 .users__page-count__right, .users__page-count__left {
+    border-radius: 4px;
     font-size: 27px;
     line-height: 24px;
     padding: 0 10px;
     cursor: pointer;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+}
+
+.users__page-count__right:hover, .users__page-count__left:hover {
+    background-color: #4A76A8;
+    color: #fff;
 }
 
 .users__page-count {

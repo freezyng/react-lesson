@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './users.css';
 import userAvatar from '../../assets/images/User.png';
 import {NavLink} from 'react-router-dom';
@@ -12,20 +12,28 @@ const Users = (props) => {
     for (let i = 1; i <= pageCount; i++) {
         pages.push(i);
     }
-    
+
+    let portionPagesVisible = 15;
+    let portionCount = Math.ceil(pageCount / portionPagesVisible);
+    let [portionNumber, setPortionNumber] = useState(1);
+    let leftPositionPageNumber = (portionNumber - 1) * portionPagesVisible + 1;
+    let rightPositionpageNumber = portionNumber * portionPagesVisible;
+
+
     return <div className='users'>
 
         <div className='users__page-count-wrap'>
-            <div className='users__page-count__left'>&#8249;</div>
+            {portionNumber > 1 && <div className='users__page-count__left' onClick={() =>{setPortionNumber(portionNumber - 1)}} >&#8249;</div>}
             <div className='users__page-count'>
                 <div>
-                    {pages.map(p => {
+                    {pages.filter( p => p >= leftPositionPageNumber && p <= rightPositionpageNumber)
+                    .map(p => {
                         return <span key={p} className={props.currentPage === p ? 'active' : ''}
                             onClick={() => { props.onPageChanget(p) }}> {p} </span>
                     })}
                 </div>
             </div>
-            <div className='users__page-count__right'>&#8250;</div>
+            {portionCount > portionNumber && <div className='users__page-count__right' onClick={() => {setPortionNumber(portionNumber + 1)}} >&#8250;</div>}
         </div>
 
         {props.users.map((u) => {
