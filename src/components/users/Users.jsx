@@ -15,15 +15,15 @@ const Users = (props) => {
 
     let portionPagesVisible = 15;
     let portionCount = Math.ceil(pageCount / portionPagesVisible);
-    let [portionNumber, setPortionNumber] = useState(1);
-    let leftPositionPageNumber = (portionNumber - 1) * portionPagesVisible + 1;
-    let rightPositionpageNumber = portionNumber * portionPagesVisible;
+    let [portionNumberThis, setPortionNumber] = useState(1);
+    let leftPositionPageNumber = (portionNumberThis - 1) * portionPagesVisible + 1;
+    let rightPositionpageNumber = portionNumberThis * portionPagesVisible;
 
 
     return <div className='users'>
 
         <div className='users__page-count-wrap'>
-            {portionNumber > 1 && <div className='users__page-count__left' onClick={() =>{setPortionNumber(portionNumber - 1)}} >&#8249;</div>}
+            {portionNumberThis > 1 && <div className='users__page-count__left' onClick={() =>{setPortionNumber(portionNumberThis - 1)}} >&#8249;</div>}
             <div className='users__page-count'>
                 <div>
                     {pages.filter( p => p >= leftPositionPageNumber && p <= rightPositionpageNumber)
@@ -33,7 +33,7 @@ const Users = (props) => {
                     })}
                 </div>
             </div>
-            {portionCount > portionNumber && <div className='users__page-count__right' onClick={() => {setPortionNumber(portionNumber + 1)}} >&#8250;</div>}
+            {portionCount > portionNumberThis && <div className='users__page-count__right' onClick={() => {setPortionNumber(portionNumberThis + 1)}} >&#8250;</div>}
         </div>
 
         {props.users.map((u) => {
