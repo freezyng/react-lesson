@@ -23,7 +23,7 @@ const Users = (props) => {
     return <div className='users'>
 
         <div className='users__page-count-wrap'>
-            {portionNumberThis > 1 && <div className='users__page-count__left' onClick={() =>{setPortionNumber(portionNumberThis - 1)}} >&#8249;</div>}
+            <button  disabled={portionNumberThis < 2 ? 'disabled' : ''} className='users__page-count__left' onClick={() =>{setPortionNumber(portionNumberThis - 1)}} >&#8249;</button>
             <div className='users__page-count'>
                 <div>
                     {pages.filter( p => p >= leftPositionPageNumber && p <= rightPositionpageNumber)
@@ -33,7 +33,7 @@ const Users = (props) => {
                     })}
                 </div>
             </div>
-            {portionCount > portionNumberThis && <div className='users__page-count__right' onClick={() => {setPortionNumber(portionNumberThis + 1)}} >&#8250;</div>}
+            <button disabled={portionCount < (portionNumberThis + 1) ? 'disabled' : ''} className='users__page-count__right' onClick={() => {setPortionNumber(portionNumberThis + 1)}} >&#8250;</button>
         </div>
 
         {props.users.map((u) => {

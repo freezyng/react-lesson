@@ -5,9 +5,9 @@
     padding: 5px;
 }
 
-.users__page-count-wrap{
+.users__page-count-wrap {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
 }
 
 .users__page-count__right, .users__page-count__left {
@@ -15,11 +15,9 @@
     font-size: 27px;
     line-height: 24px;
     padding: 0 10px;
+    background-color: inherit;
+    border: none;
     cursor: pointer;
-    -ms-user-select: none;
-    -moz-user-select: none;
-    -khtml-user-select: none;
-    -webkit-user-select: none;
 }
 
 .users__page-count__right:hover, .users__page-count__left:hover {
