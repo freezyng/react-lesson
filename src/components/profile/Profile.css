@@ -19,18 +19,16 @@
 }
 
 .profile__avatar{
-    width: 100px;
-    height: 100px;
+    max-width: 150px;
 }
 
 .profile__avatar img {
     width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    box-shadow: -2px 2px 5px rgb(30, 140, 230);
+    border-radius: 5%;
+    box-shadow: -1px 1px 8px #4A76A8;
 }
 
-.description {
+.profile__description {
     padding: 15px;
     border-bottom: 1px solid #E7E8EC;
     flex: auto;

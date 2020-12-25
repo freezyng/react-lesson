@@ -1,6 +1,7 @@
 import React from 'react';
 import preLoader from './../../../assets/images/usersPreloader.svg';
 import ProfileStatus from './ProfileStatus';
+import avatarStandart from './../../../assets/images/User.png';
 
 const ProfileInfo = (props) => {
     if(!props.profile) {
@@ -17,7 +18,7 @@ const ProfileInfo = (props) => {
     return(
         <div className="profile-info">
             <div className="profile__avatar">
-                <img src={props.profile.photos.large} alt="avatar" />
+                <img src={props.profile.photos.large || avatarStandart} alt="avatar" />
             </div>
             <div className="profile__description">
                 <div className="profile__fullName">

@@ -67,6 +67,7 @@
 
 .user__avatar img{
     width: 70px;
+    border-radius: 50%;
 }
 
 .users__preloader {
