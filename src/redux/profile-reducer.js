@@ -3,6 +3,7 @@ import { authAPI, profileAPI } from './../api/api';
 const ADD_MY_POST = 'ADD-MY-POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_STATUS = 'SET_STATUS';
+const SAVE_PHOTO_SUCCESS = 'SAVE_PHOTO_SUCCESS';
 
 let initialState = {
     myAvatarURL: 'https://7themes.su/php/imres/resize.php?width=1920&height=1440&cropratio=4:3&image=/_ph/40/397399018.jpg',
@@ -25,6 +26,11 @@ const profileReducer = (state = initialState, action) => {
                     ...state.myPostsMessages,
                     { id: ++state.myPostsMessages.length, likes: 0, message: action.newMyPost }
                 ]
+            }
+        case SAVE_PHOTO_SUCCESS:
+            return {
+                ...state,
+                profile: {...state.profile, photos: action.photos}
             }
         case SET_USER_PROFILE:
             return {
@@ -52,6 +58,10 @@ const setStatus = (status) => {
     return { type: SET_STATUS, status }
 }
 
+const savePhotoSuccess = (photos) => {
+    return { type: SAVE_PHOTO_SUCCESS, photos }
+}
+
 const getStatus = (userId) => {
     return async (dispatch) => {
         let response = await profileAPI.getStatus(userId)
@@ -75,4 +85,14 @@ const getProfileThunk = (userId) => {
     }
 }
 
-export { profileReducer, addPostCreator, getProfileThunk, getStatus, updateStatus };
+const savePhoto = (file) => {
+    return async (dispatch) => {
+        let response = await profileAPI.savePhoto(file)
+        if (response.data.resultCode === 0) {
+            dispatch(savePhotoSuccess(response.data.data.photos))
+        }
+    }
+}
+
+
+export { profileReducer, addPostCreator, getProfileThunk, getStatus, updateStatus, savePhoto };

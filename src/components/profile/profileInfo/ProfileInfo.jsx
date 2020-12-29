@@ -14,11 +14,19 @@ const ProfileInfo = (props) => {
         if(props.profile.contacts[key]){
             profileSocialContacts.push(`${key}: ${props.profile.contacts[key]}`);
         }
-    }   
+    }
+
+    const onPhotoSelected = (e) => {
+        if(e.target.files.length){
+            props.savePhoto(e.target.files[0]);
+        }
+    }
+
     return(
         <div className="profile-info">
             <div className="profile__avatar">
                 <img src={props.profile.photos.large || avatarStandart} alt="avatar" />
+                {props.isOwner && <input type='file' onChange={onPhotoSelected} />}
             </div>
             <div className="profile__description">
                 <div className="profile__fullName">
