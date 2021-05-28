@@ -59,10 +59,16 @@
     border-bottom: 1px solid #EDEEF0;
 }
 
+
 .user__info {
     display: flex;
     align-items: center;
     justify-content: space-around;
+}
+
+.user__avatar{
+    display: flex;
+    justify-content: center;
 }
 
 .user__avatar img{

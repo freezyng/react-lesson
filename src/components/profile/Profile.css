@@ -10,10 +10,10 @@
     flex-wrap: wrap;
     margin-left: 5px;
     border-radius: 5px;
-    
 }
   
 .profile-info {
+    position: relative;
     display: flex;
     width: 100%;
 }
@@ -29,8 +29,8 @@
 }
 
 .profile__description {
+    margin-top: 20px;
     padding: 15px;
-    border-bottom: 1px solid #E7E8EC;
     flex: auto;
 }
 
@@ -45,15 +45,25 @@
 .profile__contacts {
     margin-top: 40px;
     margin-left: 40px;
+    min-width: 230px;
 }
 
 .profile__contacts div {
     margin-bottom: 18px;
 }
 
+.profile__contacts h3 {
+    margin-left: -17px;
+}
+
+.profile-status {
+    position: absolute;
+    left: 160px;
+}
+
 .profile-status .profile-status__text {
     cursor: pointer;
-    background-color: #EDEEF0;
+    background-color: #F6F6F6;
     padding: 5px;
     min-width: 200px;
     min-height: 28px;

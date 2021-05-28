@@ -23,7 +23,7 @@ const Users = (props) => {
     return <div className='users'>
 
         <div className='users__page-count-wrap'>
-            <button  disabled={portionNumberThis < 2 ? 'disabled' : ''} className='users__page-count__left' onClick={() =>{setPortionNumber(portionNumberThis - 1)}} >&#8249;</button>
+            <button className='users__page-count__left' disabled={portionNumberThis < 2 ? 'disabled' : ''} onClick={() =>{setPortionNumber(portionNumberThis - 1)}} >&#8249;</button>
             <div className='users__page-count'>
                 <div>
                     {pages.filter( p => p >= leftPositionPageNumber && p <= rightPositionpageNumber)
@@ -33,7 +33,7 @@ const Users = (props) => {
                     })}
                 </div>
             </div>
-            <button disabled={portionCount < (portionNumberThis + 1) ? 'disabled' : ''} className='users__page-count__right' onClick={() => {setPortionNumber(portionNumberThis + 1)}} >&#8250;</button>
+            <button className='users__page-count__right' disabled={portionCount < (portionNumberThis + 1) ? 'disabled' : ''} onClick={() => {setPortionNumber(portionNumberThis + 1)}} >&#8250;</button>
         </div>
 
         {props.users.map((u) => {
@@ -47,10 +47,10 @@ const Users = (props) => {
                         </div>
                         <div className='user__btn'>
                             {u.followed
-                                ? <button disabled={props.followInProgress.some(id => id === u.id)}
+                                ? <button className='btn' disabled={props.followInProgress.some(id => id === u.id)}
                                     onClick={() => { props.unfollowThunk(u.id) }
                                 }>Отписаться</button>
-                                : <button disabled={props.followInProgress.some(id => id === u.id)} 
+                                : <button className='btn' disabled={props.followInProgress.some(id => id === u.id)} 
                                     onClick={() => { props.followThunk(u.id) }
                                 }>Подписаться</button>
                             }
