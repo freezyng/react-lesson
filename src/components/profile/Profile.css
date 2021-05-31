@@ -1,7 +1,3 @@
-.profile__preloader {
-    margin: 60px auto;
-}
-
 .profile {
     width: 100%;
     background-color: #fff;
@@ -12,68 +8,3 @@
     border-radius: 5px;
 }
   
-.profile-info {
-    position: relative;
-    display: flex;
-    width: 100%;
-}
-
-.profile__avatar{
-    max-width: 150px;
-}
-
-.profile__avatar img {
-    width: 100%;
-    border-radius: 5%;
-    box-shadow: -1px 1px 8px #4A76A8;
-}
-
-.profile__description {
-    margin-top: 20px;
-    padding: 15px;
-    flex: auto;
-}
-
-.profile__fullName {
-    font-weight: bold;
-}
-
-.profile__lookingForAJob, .profile__lookingForAJobDescription, .profile__aboutMe {
-    margin-left: 20px;
-}
-
-.profile__contacts {
-    margin-top: 40px;
-    margin-left: 40px;
-    min-width: 230px;
-}
-
-.profile__contacts div {
-    margin-bottom: 18px;
-}
-
-.profile__contacts h3 {
-    margin-left: -17px;
-}
-
-.profile-status {
-    position: absolute;
-    left: 160px;
-}
-
-.profile-status .profile-status__text {
-    cursor: pointer;
-    background-color: #F6F6F6;
-    padding: 5px;
-    min-width: 200px;
-    min-height: 28px;
-}
-
-.profile-status input {
-    border: none;
-    border-bottom: 1px solid #EDEEF0;
-    background-color: #EDEEF0;
-    padding: 5px;
-    min-width: 200px;
-    min-height: 28px;
-}

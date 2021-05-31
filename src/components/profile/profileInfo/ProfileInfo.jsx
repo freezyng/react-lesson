@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
+import './ProfileInfo.css';
 import preLoader from './../../../assets/images/usersPreloader.svg';
 import ProfileStatus from './ProfileStatus';
 import avatarStandart from './../../../assets/images/User.png';
+import ProfileDataForm from './ProfileDataForm';
 
 const ProfileInfo = (props) => {
+    let [editMode, setEditMode] = useState(false);
+
     if (!props.profile) {
         return <div className='profile__preloader'>{<img src={preLoader} alt='1' />}</div>
     }
@@ -21,9 +25,11 @@ const ProfileInfo = (props) => {
                 <img src={props.profile.photos.large || avatarStandart} alt="avatar" />
                 {props.isOwner && <input type='file' onChange={onPhotoSelected} />}
             </div>
-            
-            <ProfileData profile={props.profile}/>
             <ProfileStatus status={props.status} updateStatus={props.updateStatus} />
+            
+            {editMode ? <ProfileData profile={props.profile}/> : <ProfileDataForm profile={props.profile}/> }
+
+            {props.isOwner && <button className="btn btn-profile-data" onClick={() => setEditMode(!editMode)}>редактировать</button>}
         </div>
     )
 }
@@ -39,7 +45,7 @@ const ProfileData = (props) => {
         }
     }
     return (
-        <div>
+        <>
             <div className="profile__description">
                 <div className="profile__fullName">
                     <h2>{props.profile.fullName}</h2>
@@ -60,12 +66,12 @@ const ProfileData = (props) => {
             {profileSocialContacts && <div className="profile__contacts">
                 <h3>Мои контакты</h3>
                 {profileSocialContacts.map((c) => {
-                    return <div>{`${c.name}: `} <a href={`http://${c.link.replace('https://', '').replace('http://', '')}`}
-                        target="_blank">{`${c.link.replace('https://', '').replace('http://', '')}`}</a></div>
+                    return <div>{`${c.name}: `} <a href={`http://${c.link.replace('https://', '').replace('http://', '')}`}>
+                        {`${c.link.replace('https://', '').replace('http://', '')}`}</a></div>
                 })
                 }
             </div>}
-        </div>
+        </>
     )
 }
 
