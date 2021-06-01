@@ -12,4 +12,4 @@ const hasError = meta.touched && meta.error;
     )
 }
 
-export {FormComponent}
+export {FormComponent};

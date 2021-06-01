@@ -11,7 +11,10 @@ const ProfileInfo = (props) => {
     if (!props.profile) {
         return <div className='profile__preloader'>{<img src={preLoader} alt='1' />}</div>
     }
-
+    
+    const onSubmit = (formData) => {
+        console.log(formData)
+    }
 
     const onPhotoSelected = (e) => {
         if (e.target.files.length) {
@@ -26,10 +29,10 @@ const ProfileInfo = (props) => {
                 {props.isOwner && <input type='file' onChange={onPhotoSelected} />}
             </div>
             <ProfileStatus status={props.status} updateStatus={props.updateStatus} />
-            
-            {editMode ? <ProfileData profile={props.profile}/> : <ProfileDataForm profile={props.profile}/> }
 
-            {props.isOwner && <button className="btn btn-profile-data" onClick={() => setEditMode(!editMode)}>редактировать</button>}
+            {editMode ? <ProfileData isOwner={props.isOwner} profile={props.profile} editMode={editMode} setEditMode={setEditMode}/> 
+                    : <ProfileDataForm profile={props.profile} editMode={editMode} setEditMode={setEditMode} onSubmit={onSubmit}/> }
+
         </div>
     )
 }
@@ -71,6 +74,7 @@ const ProfileData = (props) => {
                 })
                 }
             </div>}
+            {props.isOwner && <button className="btn btn-profile-data" onClick={() => props.setEditMode(!props.editMode)}>Редактировать</button>}
         </>
     )
 }
