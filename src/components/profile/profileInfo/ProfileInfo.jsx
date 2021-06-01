@@ -6,14 +6,15 @@ import avatarStandart from './../../../assets/images/User.png';
 import ProfileDataForm from './ProfileDataForm';
 
 const ProfileInfo = (props) => {
-    let [editMode, setEditMode] = useState(false);
+    let [editMode, setEditMode] = useState(true);
 
     if (!props.profile) {
         return <div className='profile__preloader'>{<img src={preLoader} alt='1' />}</div>
     }
     
     const onSubmit = (formData) => {
-        console.log(formData)
+        props.saveProfile(formData)
+        setEditMode(!editMode)
     }
 
     const onPhotoSelected = (e) => {
@@ -26,12 +27,19 @@ const ProfileInfo = (props) => {
         <div className="profile-info">
             <div className="profile__avatar">
                 <img src={props.profile.photos.large || avatarStandart} alt="avatar" />
-                {props.isOwner && <input type='file' onChange={onPhotoSelected} />}
+                {props.isOwner 
+                    ? <div> 
+                        <input type="file" id="input__file" className="input__file" onChange={onPhotoSelected} multiple/>
+                        <label htmlFor="input__file">
+                            <span className="btn btn-input__file">Загрузить фото</span>
+                        </label>
+                    </div>
+                    : ''}
             </div>
             <ProfileStatus status={props.status} updateStatus={props.updateStatus} />
 
             {editMode ? <ProfileData isOwner={props.isOwner} profile={props.profile} editMode={editMode} setEditMode={setEditMode}/> 
-                    : <ProfileDataForm profile={props.profile} editMode={editMode} setEditMode={setEditMode} onSubmit={onSubmit}/> }
+                    : <ProfileDataForm initialValues={props.profile} fullName={props.profile.fullName} editMode={editMode} setEditMode={setEditMode} onSubmit={onSubmit}/> }
 
         </div>
     )

@@ -2,7 +2,7 @@ import React from 'react';
 import Profile from './Profile';
 import './Profile.css';
 import { connect } from 'react-redux';
-import { getProfileThunk, getStatus, updateStatus, savePhoto } from './../../redux/profile-reducer';
+import { getProfileThunk, getStatus, updateStatus, savePhoto, saveProfile } from './../../redux/profile-reducer';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 
@@ -50,6 +50,6 @@ const mapStateToProps = (state) => {
 
 
 export default compose(
-    connect(mapStateToProps, {getProfileThunk, getStatus, updateStatus, savePhoto}),
+    connect(mapStateToProps, {getProfileThunk, getStatus, updateStatus, savePhoto, saveProfile}),
     withRouter
 )(ProfileContainer)

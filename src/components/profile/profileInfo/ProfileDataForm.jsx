@@ -11,9 +11,12 @@ const ProfileDataForm = (props) => {
     return (
         <div className="profile__description">
             <div className="profile__fullName">
-                <h2>{props.profile.fullName}</h2>
+                <h2>{props.fullName}</h2>
             </div>
             <form className="profile__data-form" onSubmit={props.handleSubmit}>
+                Имя:
+                <Field placeholder='...' name='fullName' component={inputElem} />
+                <br />
                 Обо мне:
                 <Field placeholder='...' name='aboutMe' component={textareaElem} />
                 <br />

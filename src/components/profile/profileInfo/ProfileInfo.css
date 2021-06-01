@@ -77,3 +77,14 @@
     border-bottom: 1px solid #111;
     background-color: inherit;
 }
+
+.input__file {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+}
+
+.btn-input__file {
+    display: inline-block;
+    margin-top: 20px;
+}

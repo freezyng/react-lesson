@@ -30,7 +30,7 @@ const profileReducer = (state = initialState, action) => {
         case SAVE_PHOTO_SUCCESS:
             return {
                 ...state,
-                profile: {...state.profile, photos: action.photos}
+                profile: { ...state.profile, photos: action.photos }
             }
         case SET_USER_PROFILE:
             return {
@@ -47,6 +47,7 @@ const profileReducer = (state = initialState, action) => {
     }
 }
 
+//actions
 
 const addPostCreator = (newMyPost) => {
     return { type: ADD_MY_POST, newMyPost }
@@ -57,10 +58,11 @@ const setUserProfile = (profile) => {
 const setStatus = (status) => {
     return { type: SET_STATUS, status }
 }
-
 const savePhotoSuccess = (photos) => {
     return { type: SAVE_PHOTO_SUCCESS, photos }
 }
+
+//thunks
 
 const getStatus = (userId) => {
     return async (dispatch) => {
@@ -94,5 +96,14 @@ const savePhoto = (file) => {
     }
 }
 
+const saveProfile = (profileData) => {
+    return async (dispatch, setState) => {
+        const userId = setState().authUser.userId
+        let response = await profileAPI.saveProfile(profileData)
+        if (response.data.resultCode === 0) {
+            dispatch(getProfileThunk(userId))
+        }
+    }
+}
 
-export { profileReducer, addPostCreator, getProfileThunk, getStatus, updateStatus, savePhoto };
+export { profileReducer, addPostCreator, getProfileThunk, getStatus, updateStatus, savePhoto, saveProfile };
