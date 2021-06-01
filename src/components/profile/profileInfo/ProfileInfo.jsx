@@ -12,6 +12,13 @@ const ProfileInfo = (props) => {
         return <div className='profile__preloader'>{<img src={preLoader} alt='1' />}</div>
     }
     
+    let profileSocialContacts = [];
+
+    for (let key in props.profile.contacts) {
+        profileSocialContacts.push({ name: key, link: props.profile.contacts[key] });
+    }
+
+    
     const onSubmit = (formData) => {
         props.saveProfile(formData)
         setEditMode(!editMode)
@@ -38,8 +45,11 @@ const ProfileInfo = (props) => {
             </div>
             <ProfileStatus status={props.status} updateStatus={props.updateStatus} />
 
-            {editMode ? <ProfileData isOwner={props.isOwner} profile={props.profile} editMode={editMode} setEditMode={setEditMode}/> 
-                    : <ProfileDataForm initialValues={props.profile} fullName={props.profile.fullName} editMode={editMode} setEditMode={setEditMode} onSubmit={onSubmit}/> }
+            {editMode   ? <ProfileData isOwner={props.isOwner} profile={props.profile} editMode={editMode} 
+                                        setEditMode={setEditMode} profileSocialContacts={profileSocialContacts}/> 
+                        : <ProfileDataForm initialValues={props.profile} profile={props.profile} editMode={editMode} 
+                                            setEditMode={setEditMode} onSubmit={onSubmit} profileSocialContacts={profileSocialContacts} />
+            }
 
         </div>
     )
@@ -47,14 +57,6 @@ const ProfileInfo = (props) => {
 
 
 const ProfileData = (props) => {
-    
-    let profileSocialContacts = [];
-
-    for (let key in props.profile.contacts) {
-        if (props.profile.contacts[key]) {
-            profileSocialContacts.push({ name: key, link: props.profile.contacts[key] });
-        }
-    }
     return (
         <>
             <div className="profile__description">
@@ -71,14 +73,14 @@ const ProfileData = (props) => {
                 </div>
                 <br />
                 {props.profile.lookingForAJobDescription && <div className="profile__lookingForAJobDescription">
-                    Описание работы которую ищу: {props.profile.lookingForAJobDescription}
+                    Навыки: {props.profile.lookingForAJobDescription}
                 </div>}
             </div>
-            {profileSocialContacts && <div className="profile__contacts">
+            {props.profileSocialContacts && <div className="profile__contacts">
                 <h3>Мои контакты</h3>
-                {profileSocialContacts.map((c) => {
-                    return <div>{`${c.name}: `} <a href={`http://${c.link.replace('https://', '').replace('http://', '')}`}>
-                        {`${c.link.replace('https://', '').replace('http://', '')}`}</a></div>
+                {props.profileSocialContacts.map((c) => {
+                    return c.link ? <div>{`${c.name}: `} <a href={c.link}>{c.link}</a></div>
+                        : null
                 })
                 }
             </div>}

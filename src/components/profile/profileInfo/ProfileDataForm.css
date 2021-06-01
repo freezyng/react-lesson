@@ -1,6 +1,15 @@
 
 .profile__data-form {
+    display: flex;
+    justify-content: space-around;
     margin-top: 20px;
-    margin-left: 100px;
     flex: auto;
+}
+
+
+.profile__data-form .btn-profile-data{
+    position: absolute;
+    height: 30px;
+    margin-top: -30px;
+    margin-left: 185px;
 }

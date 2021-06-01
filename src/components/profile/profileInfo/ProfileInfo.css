@@ -74,8 +74,11 @@
     padding-bottom: 0;
     color: #111;
     border-radius: 0;
-    border-bottom: 1px solid #111;
     background-color: inherit;
+}
+
+.btn-profile-data:hover {
+    border-bottom: 1px solid #111;
 }
 
 .input__file {
