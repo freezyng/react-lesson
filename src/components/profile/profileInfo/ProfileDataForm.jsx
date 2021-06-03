@@ -32,7 +32,7 @@ const ProfileDataForm = (props) => {
                     <button className="btn btn-profile-data">Сохранить</button>
                     Мои контакты:
                     {props.profileSocialContacts.map((c) => {
-                        return <div>{c.name} <Field placeholder={c.link} name={`contacts.${c.name}`} component={inputElem} /></div>
+                        return <div key={c.name}>  {c.name} <Field placeholder={c.link} name={`contacts.${c.name}`} component={inputElem} /></div>
                     })
                     }
                 </div>

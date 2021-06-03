@@ -79,7 +79,7 @@ const ProfileData = (props) => {
             {props.profileSocialContacts && <div className="profile__contacts">
                 <h3>Мои контакты</h3>
                 {props.profileSocialContacts.map((c) => {
-                    return c.link ? <div>{`${c.name}: `} <a href={c.link}>{c.link}</a></div>
+                    return c.link ? <div key={c}>{`${c.name}: `} <a href={c.link}>{c.link}</a></div>
                         : null
                 })
                 }
