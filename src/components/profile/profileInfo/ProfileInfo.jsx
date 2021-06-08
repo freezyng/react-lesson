@@ -21,7 +21,7 @@ const ProfileInfo = (props) => {
     
     const onSubmit = (formData) => {
         props.saveProfile(formData)
-        setEditMode(!editMode)
+        //setEditMode(!editMode)
     }
 
     const onPhotoSelected = (e) => {

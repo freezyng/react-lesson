@@ -13,3 +13,7 @@
     margin-top: -30px;
     margin-left: 185px;
 }
+
+.profile-form__error {
+    color: red;
+}

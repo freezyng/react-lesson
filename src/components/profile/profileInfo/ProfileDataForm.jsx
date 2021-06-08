@@ -8,7 +8,6 @@ const textareaElem = FormComponent('textarea');
 const inputElem = FormComponent('input');
 
 const ProfileDataForm = (props) => {
-
     return (
         <div className="profile__description">
             <div className="profile__fullName">
@@ -35,13 +34,14 @@ const ProfileDataForm = (props) => {
                         return <div key={c.name}>  {c.name} <Field placeholder={c.link} name={`contacts.${c.name}`} component={inputElem} /></div>
                     })
                     }
+                    {props.error && <div className='profile-form__error'>{`${props.error} !!!`}</div>}
                 </div>
             </form>
         </div>
     )
 }
 
-const ProfileDataReduxForm = reduxForm({ form: 'ProfileDataForm' })(ProfileDataForm);
+const ProfileDataReduxForm = reduxForm({ form: 'profile-data-form' })(ProfileDataForm);
 
 
 export default ProfileDataReduxForm;

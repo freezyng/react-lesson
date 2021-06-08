@@ -1,4 +1,5 @@
 import { authAPI, profileAPI } from './../api/api';
+import { stopSubmit } from 'redux-form';
 
 const ADD_MY_POST = 'ADD-MY-POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
@@ -102,6 +103,8 @@ const saveProfile = (profileData) => {
         let response = await profileAPI.saveProfile(profileData)
         if (response.data.resultCode === 0) {
             dispatch(getProfileThunk(userId))
+        } else {
+            dispatch(stopSubmit('profile-data-form', { _error: response.data.messages }));
         }
     }
 }
