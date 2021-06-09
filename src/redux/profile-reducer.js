@@ -107,8 +107,8 @@ const saveProfile = (profileData) => {
             let messagesContact = response.data.messages[0]
             let ii = messagesContact.indexOf('->', 0)
             let nameContact = messagesContact.slice(ii+2, messagesContact.length-1).toLowerCase()
-            debugger
             dispatch(stopSubmit('profile-data-form', { "contacts": {nameContact: messagesContact } }));
+            return Promise.reject(messagesContact)
         }
     }
 }

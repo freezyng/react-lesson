@@ -20,9 +20,12 @@ const ProfileInfo = (props) => {
 
     
     const onSubmit = (formData) => {
-        props.saveProfile(formData)
-        //setEditMode(!editMode)
-    }
+        props.saveProfile(formData).then(
+            () => {
+                setEditMode(!editMode)
+            }
+        )
+}
 
     const onPhotoSelected = (e) => {
         if (e.target.files.length) {
