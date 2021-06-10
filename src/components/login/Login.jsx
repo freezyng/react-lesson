@@ -13,7 +13,7 @@ const maxLength30 = maxLength(30);
 
 const Login = (props) => {
     const onSubmit = (formData) => {
-        props.loginThunk(formData.email, formData.password, formData.rememberMe);
+        props.loginThunk(formData.email, formData.password, formData.rememberMe, formData.captcha);
     }
 
     if(props.isAuth) {
@@ -23,7 +23,7 @@ const Login = (props) => {
     return (
     <div className='login'>
         <h1>login</h1>
-        <LoginReduxForm onSubmit={onSubmit}/>
+        <LoginReduxForm onSubmit={onSubmit} captchaUrl={props.captchaUrl}/>
     </div>)
 }
 
@@ -36,6 +36,8 @@ const LoginForm = (props) => {
         Запомнить меня
         <Field type="checkbox" name='rememberMe' component={InputElem}/>
         {props.error && <div className='login-form__error'>{`${props.error} !!!`}</div>}
+        {props.captchaUrl && <Field type="text" name='captcha' component={InputElem}/>}
+        {props.captchaUrl && <img src={props.captchaUrl} />}
         <button className='btn'>Войти</button>
     </form>)
 }
@@ -44,6 +46,7 @@ const LoginReduxForm = reduxForm({form: 'login'})(LoginForm);
 
 const mapStateToProps = (state) => {
     return {
+        captchaUrl: state.authUser.captchaUrl,
         isAuth: state.authUser.isAuth
     }
 }

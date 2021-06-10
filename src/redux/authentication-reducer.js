@@ -15,9 +15,10 @@ let initialState = {
 const authUser = (state = initialState, action) => {
     switch (action.type) {
         case SET_USER_DATA:
+        case GET_CAPTCHA_URL_SUCCESS:
             return {
                 ...state,
-                ...action.data,
+                ...action.payload,
             }
         default:
             return state;
@@ -26,7 +27,7 @@ const authUser = (state = initialState, action) => {
 }
 
 const setAuthUserData = (email, login, userId, isAuth) => {
-    return { type: SET_USER_DATA, data: { email, login, userId, isAuth } }
+    return { type: SET_USER_DATA, payload: { email, login, userId, isAuth } }
 }
 
 const getCaptchaUrl = (captchaUrl) => {
@@ -43,12 +44,15 @@ const setAuthUserDataThunk = () => {
     }
 }
 
-const loginThunk = (email, password, rememberMe) => {
+const loginThunk = (email, password, rememberMe, captcha) => {
     return async (dispatch) => {
-        const response = await authAPI.login(email, password, rememberMe)
+        const response = await authAPI.login(email, password, rememberMe, captcha)
         if (response.data.resultCode === 0) {
             dispatch(setAuthUserDataThunk());
         } else {
+            if(response.data.resultCode === 10){
+                dispatch(getCaptchaThunk());
+            }
             dispatch(stopSubmit('login', { _error: response.data.messages }));
         }
     }
@@ -58,13 +62,14 @@ const getCaptchaThunk = () => {
     return async (dispatch) => {
         const response = await securityAPI.getCaptchaUrl()
         const captchaUrl = response.data.url
-            dispatch(setAuthUserDataThunk());
+        dispatch(getCaptchaUrl(captchaUrl));
     }
 }
 
 const logoutThunk = () => {
     return async (dispatch) => {
         const response = await authAPI.logout()
+        debugger
         if (response.data.resultCode === 0) {
             dispatch(setAuthUserData(null, null, null, false))
         }
