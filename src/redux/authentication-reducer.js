@@ -1,13 +1,15 @@
 import { stopSubmit } from 'redux-form';
-import { authAPI } from './../api/api';
+import { authAPI, securityAPI } from './../api/api';
 
 const SET_USER_DATA = 'auth/SET_USER_DATA';
+const GET_CAPTCHA_URL_SUCCESS = 'GET_CAPTCHA_URL_SUCCESS';
 
 let initialState = {
     userId: null,
     login: null,
     email: null,
-    isAuth: false
+    isAuth: false,
+    captchaUrl: null
 }
 
 const authUser = (state = initialState, action) => {
@@ -27,9 +29,13 @@ const setAuthUserData = (email, login, userId, isAuth) => {
     return { type: SET_USER_DATA, data: { email, login, userId, isAuth } }
 }
 
+const getCaptchaUrl = (captchaUrl) => {
+    return { type: GET_CAPTCHA_URL_SUCCESS, payload: { captchaUrl } }
+}
+
 const setAuthUserDataThunk = () => {
     return async (dispatch) => {
-        let response = await authAPI.me()
+        const response = await authAPI.me()
         if (response.data.resultCode === 0) {
             let { email, login, id } = response.data.data
             dispatch(setAuthUserData(email, login, id, true))
@@ -39,7 +45,7 @@ const setAuthUserDataThunk = () => {
 
 const loginThunk = (email, password, rememberMe) => {
     return async (dispatch) => {
-        let response = await authAPI.login(email, password, rememberMe)
+        const response = await authAPI.login(email, password, rememberMe)
         if (response.data.resultCode === 0) {
             dispatch(setAuthUserDataThunk());
         } else {
@@ -48,9 +54,17 @@ const loginThunk = (email, password, rememberMe) => {
     }
 }
 
+const getCaptchaThunk = () => {
+    return async (dispatch) => {
+        const response = await securityAPI.getCaptchaUrl()
+        const captchaUrl = response.data.url
+            dispatch(setAuthUserDataThunk());
+    }
+}
+
 const logoutThunk = () => {
     return async (dispatch) => {
-        let response = await authAPI.logout()
+        const response = await authAPI.logout()
         if (response.data.resultCode === 0) {
             dispatch(setAuthUserData(null, null, null, false))
         }
@@ -58,4 +72,4 @@ const logoutThunk = () => {
 }
 
 
-export { authUser, setAuthUserData, setAuthUserDataThunk, loginThunk, logoutThunk };
+export { authUser, setAuthUserData, setAuthUserDataThunk, loginThunk, logoutThunk, getCaptchaThunk };

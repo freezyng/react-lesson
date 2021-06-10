@@ -45,6 +45,13 @@ const authAPI = {
 
 }
 
+const securityAPI = {
+    getCaptchaUrl() {
+        return instance.get(`security/get-captcha-url`)
+    },
+
+}
+
 const profileAPI = {
     getStatus(userId) {
         return instance.get(`profile/status/${userId}`)
@@ -72,4 +79,4 @@ const profileAPI = {
     }
 }
 
-export {usersAPI, authAPI, profileAPI};
+export {usersAPI, authAPI, profileAPI, securityAPI};
