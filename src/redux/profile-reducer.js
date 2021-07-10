@@ -105,9 +105,10 @@ const saveProfile = (profileData) => {
             dispatch(getProfileThunk(userId))
         } else {
             let messagesContact = response.data.messages[0]
+            let messagesContactNew = messagesContact.slice(0, 19)
             let ii = messagesContact.indexOf('->', 0)
             let nameContact = messagesContact.slice(ii+2, messagesContact.length-1).toLowerCase()
-            dispatch(stopSubmit('profile-data-form', { "contacts": {nameContact: messagesContact } }));
+            dispatch(stopSubmit('profile-data-form', { "contacts": {[nameContact]: messagesContactNew } }));
             return Promise.reject(messagesContact)
         }
     }

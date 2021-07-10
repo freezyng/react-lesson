@@ -37,7 +37,7 @@ const LoginForm = (props) => {
         <Field type="checkbox" name='rememberMe' component={InputElem}/>
         {props.error && <div className='login-form__error'>{`${props.error} !!!`}</div>}
         {props.captchaUrl && <Field type="text" name='captcha' component={InputElem}/>}
-        {props.captchaUrl && <img src={props.captchaUrl} />}
+        {props.captchaUrl && <img src={props.captchaUrl} alt='captcha'/>}
         <button className='btn'>Войти</button>
     </form>)
 }
